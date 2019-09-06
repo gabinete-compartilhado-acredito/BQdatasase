@@ -1,0 +1,7 @@
+# To check an error message coming from a query ran on BigQuery (BG), use the command:
+bq --format=prettyjson show -j {job_id}
+
+# (check the Job ID in the Job Information tab in the Query results in the BG UI).
+
+# Informações sobre como debugar dados do Storage no BigQuery:
+# https://snowplowanalytics.com/blog/2018/12/19/debugging-bad-data-in-gcp-with-bigquery/
