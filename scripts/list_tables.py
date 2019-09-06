@@ -11,7 +11,7 @@ import os
 from google.cloud import bigquery
 
 # Maybe the line below is required:
-#os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/home/skems/gabinete/projetos/keys-configs/gabinete-compartilhado.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/home/skems/gabinete/projetos/keys-configs/gabinete-compartilhado.json'
 
 client = bigquery.Client()
 
@@ -34,7 +34,7 @@ for dataset in datasets:
             filename  = table.full_table_id.split(':')[-1]
             objTable  = client.get_table(full_name)
             query     = objTable.view_query
-            with open('views/'+filename+'.sql','w') as f:
+            with open('../views/'+filename+'.sql','w') as f:
                 f.write(query)
             
     print('')

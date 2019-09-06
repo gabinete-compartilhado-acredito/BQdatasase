@@ -5,9 +5,9 @@ SELECT nome_parlamentar, sigla_partido, sigla_uf, data_hora, sigla_orgao, despac
 
 -- TIPO DE ATIVIDADE --
 CASE
-WHEN descricao_tramitacao = 'Designação de Relator' AND sigla_tipo IN ('PL', 'PEC', 'MPV', 'PLC', 'PDL', 'PDC', 'PDN', 'PDS', 'PLP')
+WHEN descricao_tramitacao = 'Designação de Relator' AND sigla_tipo IN ('PL', 'PEC', 'MPV', 'PLC', 'PDL', 'PDC', 'PDN', 'PDS', 'PLP', 'PLV')
 THEN 'Relatorias assumidas'
-WHEN descricao_tramitacao = 'Parecer do Relator' AND sigla_tipo IN ('PL', 'PEC', 'MPV', 'PLC', 'PDL', 'PDC', 'PDN', 'PDS', 'PLP')
+WHEN descricao_tramitacao = 'Parecer do Relator' AND sigla_tipo IN ('PL', 'PEC', 'MPV', 'PLC', 'PDL', 'PDC', 'PDN', 'PDS', 'PLP', 'PLV')
 THEN 'Relatorias entregues'
 WHEN descricao_tramitacao = 'Apresentação de Proposição' AND sigla_tipo = 'RIC'
 THEN 'Pedidos de informação'
@@ -17,14 +17,16 @@ WHEN descricao_tramitacao = 'Discussão da Materia pelos Deputados' OR LOWER(des
 THEN 'Discussões de matéria'
 WHEN descricao_tramitacao = 'Aprovação de Requerimento'
 THEN 'Aprovações de requerimentos'
-WHEN descricao_tramitacao = 'Apresentação de Proposição' AND sigla_tipo = 'REQ' AND lower(despacho) LIKE '%audiência pública%'
+WHEN descricao_tramitacao = 'Apresentação de Proposição' AND sigla_tipo = 'REQ' 
+AND (lower(despacho) LIKE '%audiência pública%' OR lower(despacho) LIKE '%audiências públicas%' OR lower(despacho) LIKE '%palestra%'
+     OR lower(despacho) LIKE '%seminário%') 
 AND lower(ementa) NOT LIKE '%aditamento%'
 AND NOT (lower(ementa) LIKE '%convidad%' AND (lower(ementa) LIKE '%inclusão%' OR lower(ementa) LIKE '%incluir%' OR lower(ementa) LIKE '%incluíd%'))
 THEN 'Pedidos de audiência pública'
 WHEN descricao_tramitacao IN ('Apresentação de Proposição', 'Apresentação de Requerimento') AND lower(despacho) LIKE '%desarquivamento%'
 THEN 'Pedidos de desarquivamento'
 WHEN descricao_tramitacao = 'Apresentação de Proposição'
-     AND sigla_tipo IN ('PL', 'PEC', 'PLC', 'PDL', 'PDC', 'PDN', 'PDS', 'PLP')
+     AND sigla_tipo IN ('PL', 'PEC', 'PLC', 'PDL', 'PDC', 'PDN', 'PDS', 'PLP', 'PLV')
      AND (LOWER(despacho) LIKE '%apresentação __ projeto __ lei%' OR 
           LOWER(despacho) LIKE '%apresentação __ projeto __ decreto legislativo%' OR 
           LOWER(despacho) LIKE '%apresentação __ proposta __ emenda%')

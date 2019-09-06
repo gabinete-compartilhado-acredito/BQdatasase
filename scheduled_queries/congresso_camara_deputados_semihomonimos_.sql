@@ -1,0 +1,3 @@
+# destination_table: analise_congresso_atividade.camara_deputados_semihomonimos_
+
+SELECT get_scheduled_queries.py list_scheduled_queries.sh list_tables.py FROM `gabinete-compartilhado.congresso.camara_deputados_semihomonimos` 

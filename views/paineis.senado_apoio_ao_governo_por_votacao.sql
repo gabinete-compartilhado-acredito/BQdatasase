@@ -8,7 +8,8 @@ v.id_senador, v.nome_senador, v.partido_senador, v.uf_senador, i.IdentificacaoPa
 -- Voto do senador e do governo:
 v.DescricaoVoto, g.DescricaoVoto as voto_governo, g.orient_gov,
 -- Cálculo de apoio ao governo:
-CASE 
+CASE
+  WHEN g.orient_gov IS NULL THEN NULL
   WHEN g.orient_gov NOT IN ('Sim','Não','Obstrução') THEN NULL
   WHEN v.voto_simplificado NOT IN ('Sim','Não','Abstenção','Obstrução') THEN NULL
   WHEN v.voto_simplificado = g.orient_gov THEN 1
