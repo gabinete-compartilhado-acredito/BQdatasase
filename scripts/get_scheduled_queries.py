@@ -2,11 +2,24 @@
 
 from subprocess import check_output
 import json
+import requests
 
-# Use shell script to get scheduled queries:
-json_string = check_output(['./list_scheduled_queries.sh'])
-sched_raw   = json.loads(json_string)
-sched_list  = sched_raw['transferConfigs']
+# Hard-coded stuff:
+project_id = 'gabinete-compartilhado'
+domain     = 'https://bigquerydatatransfer.googleapis.com'
+
+# Get access token:
+token = check_output(['gcloud', 'auth', 'print-access-token']).decode('utf-8')[:-1]
+
+# Make HTTP GET of scheduled queries:
+session = requests.Session()
+session.mount(domain, requests.adapters.HTTPAdapter(max_retries=3))
+url = domain + '/v1/projects/' + project_id + '/transferConfigs?dataSourceIds=scheduled_query' 
+response = session.get(url, headers={'Authorization': 'Bearer ' + token})
+
+# Get list of scheduled queries:
+sched_raw  = json.loads(response.content)
+sched_list = sched_raw['transferConfigs']
 
 for s in sched_list:
 
