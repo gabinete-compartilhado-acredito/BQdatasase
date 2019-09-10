@@ -9,7 +9,7 @@ CASE
 WHEN sigla_bloco = 'Governo' AND cargo = 'lider' THEN 2
 WHEN sigla_bloco = 'Governo' AND cargo = 'vice lider' THEN 4
 WHEN sigla_bloco != 'Governo' AND cargo = 'lider' THEN 3
-WHEN sigla_bloco != 'Governo' AND cargo = 'vice lider' THEN 4
+WHEN  sigla_bloco != 'Governo' AND cargo = 'vice lider' THEN 4
 END AS id_cargo,
 sigla_bloco,
 total_membros

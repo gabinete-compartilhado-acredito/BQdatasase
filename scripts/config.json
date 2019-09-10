@@ -1,0 +1,6 @@
+{
+    "credentials": "/home/skems/gabinete/projetos/keys-configs/gabinete-compartilhado.json",
+    "printout": false,
+    "get_views": false,
+    "views_path":  "../views/"
+}

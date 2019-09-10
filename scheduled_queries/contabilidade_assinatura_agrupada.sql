@@ -1,3 +1,3 @@
 # destination_table: datastudio.contabilidade_assinatura_agrupada_
 
-SELECT get_scheduled_queries.py list_scheduled_queries.sh list_tables.py FROM `gabinete-compartilhado.datastudio.contabilidade_assinatura_agrupada`
+SELECT * FROM `gabinete-compartilhado.datastudio.contabilidade_assinatura_agrupada`

@@ -1,0 +1,4 @@
+get_scheduled_queries.py   > No-parameter script that downloads the scheduled queries to ../scheduled_queries
+list_scheduled_queries.sh  > No-parameter script that returns the info about the scheduled queries (it is called by the script above)
+list_tables.py             > No-paramerer script that creates a table of BigQuery tables and saves the views to ../views
+
