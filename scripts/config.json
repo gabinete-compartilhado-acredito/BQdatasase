@@ -3,4 +3,5 @@
     "printout": false,
     "get_views": false,
     "views_path":  "../views/"
+    "scheduled_path": "../scheduled_queries/"
 }

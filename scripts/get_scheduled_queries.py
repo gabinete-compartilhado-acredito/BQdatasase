@@ -1,33 +1,37 @@
-#!/usr/bin/env python 
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
-from subprocess import check_output
-import json
-import requests
+"""
+Input:
+config - a string for a filename of a json file.
 
-# Hard-coded stuff:
-project_id = 'gabinete-compartilhado'
-domain     = 'https://bigquerydatatransfer.googleapis.com'
+Runs the bash command 'gcloud auth print-access-token' to get the access token, 
+then uses it to enter the BigQuery API via http requests and download all info about
+scheduled queries, in particular their query codes. Saves them to directory specified
+in the config.
+"""
 
-# Get access token:
-token = check_output(['gcloud', 'auth', 'print-access-token']).decode('utf-8')[:-1]
+import sys
+import download_bigquery_info as d
 
-# Make HTTP GET of scheduled queries:
-session = requests.Session()
-session.mount(domain, requests.adapters.HTTPAdapter(max_retries=3))
-url = domain + '/v1/projects/' + project_id + '/transferConfigs?dataSourceIds=scheduled_query' 
-response = session.get(url, headers={'Authorization': 'Bearer ' + token})
+# Docstring output:
+if len(sys.argv) > 1 + 1: 
+    print(__doc__)
+    sys.exit(1)
 
-# Get list of scheduled queries:
-sched_raw  = json.loads(response.content)
-sched_list = sched_raw['transferConfigs']
+# Get input config:
+elif len(sys.argv) == 1 + 1:
+    config = sys.argv[1]
+    
+# Set default config:
+else:
+    config = {
+        "credentials": "/home/skems/gabinete/projetos/keys-configs/gabinete-compartilhado.json",
+        "printout": True,
+        "get_views": True,
+        "views_path":  "../views/",
+        "scheduled_path": "../scheduled_queries/"
+    }
 
-for s in sched_list:
-
-    # Get query name and destination table name:
-    filename           = '../scheduled_queries/' + s['displayName'] + '.sql'
-    destination_header = '# destination_table: ' + s['destinationDatasetId'] + '.' + \
-                         s['params']['destination_table_name_template']
-    # Save it to file:
-    with open(filename, 'w') as f:
-        f.write(destination_header + '\n\n')
-        f.write(s['params']['query'])
+# Run code:
+d.get_scheduled_queries(config)

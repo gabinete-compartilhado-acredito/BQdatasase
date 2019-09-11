@@ -25,7 +25,8 @@ else:
         "credentials": "/home/skems/gabinete/projetos/keys-configs/gabinete-compartilhado.json",
         "printout": True,
         "get_views": True,
-        "views_path":  "../views/"
+        "views_path":  "../views/",
+        "scheduled_path": "../scheduled_queries/"
     }
 
 # Run code:
