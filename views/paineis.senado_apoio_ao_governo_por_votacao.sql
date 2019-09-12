@@ -6,7 +6,7 @@ v.tipoMateria, v.NumeroMateria, v.AnoMateria,
 -- Descrição do senador:
 v.id_senador, v.nome_senador, v.partido_senador, v.uf_senador, i.IdentificacaoParlamentar.UrlPaginaParlamentar AS url_senador,
 -- Voto do senador e do governo:
-v.DescricaoVoto, g.DescricaoVoto as voto_governo, g.orient_gov,
+v.SiglaDescricaoVoto, g.SiglaDescricaoVoto as voto_governo, g.orient_gov,
 -- Cálculo de apoio ao governo:
 CASE
   WHEN g.orient_gov IS NULL THEN NULL

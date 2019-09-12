@@ -1,5 +1,5 @@
 SELECT l.id_denador as id_lider_gov, l.nome_senador as nome_lider_gov, l.partido as partido_lider_gov, l.uf as uf_lider_gov, 
-v.num_votacao, l.ano, l.legislatura, v.DataSessao, v.DescricaoVoto, v.voto_simplificado, v.voto_bool,
+v.num_votacao, l.ano, l.legislatura, v.DataSessao, v.SiglaDescricaoVoto, v.voto_simplificado, v.voto_bool,
 
 CASE v.voto_simplificado 
   WHEN 'Sim' THEN 'Sim'

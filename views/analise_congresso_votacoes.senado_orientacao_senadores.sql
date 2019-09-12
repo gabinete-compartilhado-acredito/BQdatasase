@@ -3,8 +3,8 @@ SELECT
 v.num_votacao, 
 o.legislatura, o.ano, 
 dt.data_displaced,
-v.DataSessao, v.votacaoSecreta, v.DescricaoResultado, v.tipoMateria, v.id_senador, v.nome_senador, v.partido_senador, v.DescricaoVoto, v.voto_bool,
-o.id_lider_gov, o.DescricaoVoto as voto_lider_gov, o.voto_bool as voto_bool_lider_gov, 
+v.DataSessao, v.votacaoSecreta, v.DescricaoResultado, v.tipoMateria, v.id_senador, v.nome_senador, v.partido_senador, v.SiglaDescricaoVoto, v.voto_bool,
+o.id_lider_gov, o.SiglaDescricaoVoto as voto_lider_gov, o.voto_bool as voto_bool_lider_gov, 
 /* Nova coluna: apoio */
 CASE v.voto_bool = o.voto_bool WHEN true THEN 1 ELSE 0 END as apoio
 /* Tabelas utilizadas */
