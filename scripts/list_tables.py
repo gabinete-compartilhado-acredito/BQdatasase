@@ -5,6 +5,8 @@
 This function prints to screen the list of BigQuery Tables and downloads the view's queries. 
 It may be ran without input parameters (in which case it uses hard-coded defaults) or 
 with a json file as config. 
+
+Created by: Henrique S. Xavier, hsxavier@if.usp.br, 12/sep/2019.
 """
 
 import sys

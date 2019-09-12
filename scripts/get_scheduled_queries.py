@@ -9,6 +9,8 @@ Runs the bash command 'gcloud auth print-access-token' to get the access token,
 then uses it to enter the BigQuery API via http requests and download all info about
 scheduled queries, in particular their query codes. Saves them to directory specified
 in the config.
+
+Created by: Henrique S. Xavier, hsxavier@if.usp.br, 12/sep/2019.
 """
 
 import sys

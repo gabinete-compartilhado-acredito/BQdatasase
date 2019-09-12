@@ -103,7 +103,9 @@ def get_scheduled_queries(config):
     # Get list of scheduled queries:
     sched_raw  = json.loads(response.content)
     sched_list = sched_raw['transferConfigs']
-
+    # Remove disabled (on pause) queries:
+    sched_list = list(filter(lambda q: 'disabled' not in q.keys(), sched_list))
+    
     for s in sched_list:
 
         # Get query name and destination table name:

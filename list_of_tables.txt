@@ -202,7 +202,6 @@ testing_mess                               ----------
   old_apoio_deputados_governo_2019_08_02   (TABLE)
   proposicoes_sel_com_tramitacoes          (TABLE)
   senado_proposicoes                       (EXTERNAL)
-  senado_tramitacoes_test_hist             (TABLE)
   senador_votacoes                         (EXTERNAL)
   test_senado_proposicoes                  (EXTERNAL)
 
