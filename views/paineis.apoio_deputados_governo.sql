@@ -37,11 +37,14 @@ SELECT
   g.id_deputado, g.nome, g.sigla_partido, g.uf, g.voto_padronizado AS voto,
   -- Info da orientação do governo:
   p.orientacao_partido AS orient_part, g.orientacao_governo AS orient_gov, 
+  -- Alinhamento ao governo:
   CASE
     WHEN p.orientacao_partido = 'Obstrução' AND p.voto_padronizado = 'Ausente' 
       AND g.orientacao_governo != 'Obstrução' AND g.orientacao_governo != 'Liberado' THEN 0 
     ELSE g.apoio_temp
-  END AS apoio
+  END AS apoio,
+  -- Quórum da votação:
+  IF(g.voto_padronizado IN ('Sim', 'Não', 'Abstenção', 'Art. 17'), 1, 0) AS quorum
 
 FROM alinhamento_governo AS g
 LEFT JOIN alinhamento_partido as p
