@@ -26,8 +26,8 @@ SELECT
   ARRAY_AGG(IF(p.cod_regime IS NULL, -1, p.cod_regime) ORDER BY p.ordem_pauta) AS cod_regime,
   ARRAY_AGG(IF(p.regime IS NULL, '', p.regime) ORDER BY p.ordem_pauta) AS regime,
   ARRAY_AGG(IF(a.situacao_item IS NULL, '', a.situacao_item) ORDER BY p.ordem_pauta) AS situacao_item,
-  STRING_AGG(CONCAT(CAST(p.ordem_pauta AS STRING), '. ', p.proposicao_sigla_tipo, CASt(p.proposicao_numero AS STRING), '/', CAST(p.proposicao_ano AS STRING), ': ',
-    p.proposicao_ementa), '\n' ORDER BY p.ordem_pauta) AS pauta,
+  STRING_AGG(CONCAT(CAST(p.ordem_pauta AS STRING), '. ', p.proposicao_sigla_tipo, CASt(p.proposicao_numero AS STRING), '/', CAST(p.proposicao_ano AS STRING), 
+  ' - ', p.regime, ': ', p.proposicao_ementa), '\n' ORDER BY p.ordem_pauta) AS pauta,
   p.capture_date, p.api_url
 
 FROM (

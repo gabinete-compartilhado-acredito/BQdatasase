@@ -13,6 +13,8 @@ SELECT
   situacao,
   descricao,
   descricaoTipo AS descricao_tipo,
+  -- Informação sobre os orgãos responsáveis (é um array):
+  orgaos,
   -- Informações sobre a captura:
   uri AS uri_evento,
   PARSE_DATETIME('%Y-%m-%d %H:%M:%S', capture_date) AS capture_date,

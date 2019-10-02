@@ -26,13 +26,11 @@ analise_congresso_votacoes                 ----------
   senado_orientacao_senadores              (VIEW)
   senado_orientacao_senadores_tab          (TABLE)
 
-analises                                   ----------
-  presenca_deputado_max_sessao             (VIEW)
-
 bruto_gabinete_administrativo              ----------
   contabilidade_assinaturas                (VIEW)
   contabilidade_assinaturas_formulario     (EXTERNAL)
   contabilidade_assinaturas_manual         (EXTERNAL)
+  parlamentares_renovabr                   (EXTERNAL)
   proposicoes_interesse                    (EXTERNAL)
 
 bruto_tse                                  ----------
@@ -40,6 +38,7 @@ bruto_tse                                  ----------
 
 camara_v1                                  ----------
   deputados_blocos                         (EXTERNAL)
+  deputados_comissionados                  (EXTERNAL)
   liderancas                               (EXTERNAL)
   proposicao_votacao_bancada               (EXTERNAL)
   proposicao_votacao_deputado              (EXTERNAL)
@@ -48,6 +47,8 @@ camara_v1                                  ----------
 
 camara_v1_processed                        ----------
   deputados_blocos_cleaned                 (VIEW)
+  deputados_comissionados_cleaned          (VIEW)
+  deputados_comissionados_combined         (VIEW)
   proposicao_votacao_bancada_cleaned       (VIEW)
   proposicao_votacao_bancada_expandida     (VIEW)
   proposicao_votacao_deputado_cleaned      (VIEW)
@@ -67,7 +68,6 @@ camara_v2                                  ----------
   eventos                                  (EXTERNAL)
   eventos_orgaos                           (EXTERNAL)
   eventos_pauta                            (EXTERNAL)
-  eventos_presenca_deputados               (EXTERNAL)
   legislaturas                             (EXTERNAL)
   orgaos                                   (EXTERNAL)
   partidos                                 (EXTERNAL)
@@ -80,6 +80,13 @@ camara_v2                                  ----------
 
 camara_v2_processed                        ----------
   deputados_detalhes_cleaned               (VIEW)
+  eventos_cleaned                          (VIEW)
+  eventos_completa                         (VIEW)
+  eventos_orgaos_agregada                  (VIEW)
+  eventos_orgaos_cleaned                   (VIEW)
+  eventos_pauta_agregada                   (VIEW)
+  eventos_pauta_cleaned                    (VIEW)
+  orgaos_cleaned                           (VIEW)
   proposicoes_autores_cleaned              (VIEW)
   proposicoes_cleaned                      (VIEW)
   proposicoes_completa                     (VIEW)
@@ -199,11 +206,10 @@ siconv                                     ----------
   data_carga                               (TABLE)
 
 testing_mess                               ----------
-  old_apoio_deputados_governo_2019_08_02   (TABLE)
+  deputados_detalhes                       (EXTERNAL)
   proposicoes_sel_com_tramitacoes          (TABLE)
-  senado_proposicoes                       (EXTERNAL)
   senador_votacoes                         (EXTERNAL)
-  test_senado_proposicoes                  (EXTERNAL)
+  temp_tramitacoes_art54                   (TABLE)
 
 tratado_tse                                ----------
   orgaos_partidarios                       (TABLE)

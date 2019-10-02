@@ -6,6 +6,10 @@ SELECT
   -- Info do orgão:
   id AS id_orgao,
   sigla AS sigla_orgao,
+  nome AS nome_orgao,
+  apelido AS apelido_orgao,
+  codTipoOrgao AS cod_tipo_orgao,
+  tipoOrgao AS tipo_orgao,
   -- Info do evento:
   CAST(ARRAY_REVERSE(SPLIT(api_url, '/'))[OFFSET(1)] AS INT64) AS id_evento,
   -- Links:

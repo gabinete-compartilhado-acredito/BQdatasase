@@ -14,7 +14,7 @@ SELECT
   -- Info da proposição:
   v.id_proposicao, v.ementa, v.id_autor, v.nome_autor, v.sigla_partido_autor, v.uf_autor, v.url_inteiro_teor,
   -- Info do voto:
-  v.id_deputado, v.nome, v.sigla_partido, v.uf, v.voto_padronizado,
+  v.id_deputado, v.nome, v.sigla_partido, v.uf, v.voto_padronizado, v.orientacao_proprio_partido, v.voto_orientado,
   -- Info da orientação:
   o.sigla_partido as partido_orientacao, o.orientacao_padronizada,
   -- Cálculo do apoio:
