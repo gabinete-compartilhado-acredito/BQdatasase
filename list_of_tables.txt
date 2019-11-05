@@ -26,6 +26,10 @@ analise_congresso_votacoes                 ----------
   senado_orientacao_senadores              (VIEW)
   senado_orientacao_senadores_tab          (TABLE)
 
+analise_indicacoes_federal                 ----------
+  dou_bruto                                (TABLE)
+  dou_e_comissionados_raw                  (TABLE)
+
 bruto_gabinete_administrativo              ----------
   contabilidade_assinaturas                (VIEW)
   contabilidade_assinaturas_formulario     (EXTERNAL)
@@ -53,6 +57,7 @@ camara_v1_processed                        ----------
   proposicao_votacao_bancada_expandida     (VIEW)
   proposicao_votacao_deputado_cleaned      (VIEW)
   proposicao_votacao_deputado_processed    (VIEW)
+  proposicoes_tramitadas_periodo_cleaned   (VIEW)
 
 camara_v2                                  ----------
   blocos                                   (EXTERNAL)
@@ -148,7 +153,9 @@ executivo_federal_dou                      ----------
   artigos_com_campos_sel                   (VIEW)
   bruto_dou                                (EXTERNAL)
   keys_2019_05_16                          (TABLE)
+  keys_2019_10_25                          (TABLE)
   keys_atuais                              (VIEW)
+  old_artigos_com_campos_sel               (VIEW)
 
 executivo_federal_servidores               ----------
   cadastro                                 (EXTERNAL)
@@ -207,8 +214,12 @@ siconv                                     ----------
 
 testing_mess                               ----------
   deputados_detalhes                       (EXTERNAL)
-  proposicoes_sel_com_tramitacoes          (TABLE)
+  for_                                     (TABLE)
+  parsed_dou                               (EXTERNAL)
+  raw_dou                                  (EXTERNAL)
+  senado_senador_votacoes                  (VIEW)
   senador_votacoes                         (EXTERNAL)
+  struct_dou                               (EXTERNAL)
   temp_tramitacoes_art54                   (TABLE)
 
 tratado_tse                                ----------

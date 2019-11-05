@@ -1,6 +1,7 @@
 {
     "credentials": "/home/skems/gabinete/projetos/keys-configs/gabinete-compartilhado.json",
     "printout": true,
+    "table_list_file": "/home/skems/gabinete/projetos/bigQuery/list_of_tables.txt",
     "get_views": true,
     "views_path":  "/home/skems/gabinete/projetos/bigQuery/views/",
     "get_scheduled": true,

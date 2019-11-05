@@ -1,134 +1,69 @@
-/* Cria tabelas para associar cada linha do DOU bruto a certos dados importantes */
-WITH 
+/***
+     Tabela com campos selecionados do DOU em colunas separadas. Além disso, fazemos uma limpeza:
+     - A seção foi parseada;
+     - As datas de publicação e de captura foram transformadas em DATETIME;
+     E criamos os campos:
+     - alltext, que agrupa diversos campos num só;
+     - resumo, que extrai o começo dos parágrafos.
+     
+     NOTA: No caso de erro "Scalar subquery produced more than one element", isso indica que existem artigos duplicados, talvez por erro 
+     na captura (e.g. com artigos com "//" no nome). Nesse caso, descomente as linhas marcadas a baixo para achar o artigo culpado e 
+     comente todas as subqueries.
+ ***/
 
-/* Data de publicação */
-date_table AS 
-(SELECT url, parse_date('%d/%m/%Y', value) AS pub_date
-FROM `gabinete-compartilhado.executivo_federal_dou.bruto_dou`
-WHERE key = 'publicado-dou-data'),
+-- Agrupa base bruta do DOU nos artigos:
+WITH grouped AS (
+  SELECT url,
+  ARRAY_AGG(STRUCT(key AS key, value AS value)) as data,
+  ANY_VALUE(capture_date) AS capture_date,
+  ANY_VALUE(url_certificado) as url_certificado,
+  COUNT(DISTINCT key) AS n_keys_distinct,
+  COUNT(key) AS n_keys
+  FROM `gabinete-compartilhado.executivo_federal_dou.bruto_dou` 
+  GROUP BY url
+)
 
-/* Seção */
-secao_table AS
---(SELECT url, CAST(SPLIT(SPLIT(value,'|')[OFFSET(0)],':')[OFFSET(1)] AS INT64) AS secao
-(SELECT url, SPLIT(SPLIT(value,'|')[OFFSET(0)],':')[OFFSET(1)] AS secao 
-FROM `gabinete-compartilhado.executivo_federal_dou.bruto_dou` 
-WHERE key = 'secao-dou'),
+SELECT
+  -- Títulos/Id. do artigo:
+  (SELECT value FROM UNNEST(data) WHERE key = 'identifica') AS identifica,
+  (SELECT value FROM UNNEST(data) WHERE key = 'orgao-dou-data') AS orgao,
+  (SELECT value FROM UNNEST(data) WHERE key = 'titulo') AS ato_orgao,
+  (SELECT value FROM UNNEST(data) WHERE key = 'subtitulo') AS subtitulo,
+  -- Conteúdo do artigo:
+  (SELECT value FROM UNNEST(data) WHERE key = 'ementa') AS ementa, 
+  (SELECT value FROM UNNEST(data) WHERE key = 'dou-paragraph') AS paragrafos,
+  (SELECT value FROM UNNEST(data) WHERE key = 'dou-em') AS italicos,
+  (SELECT value FROM UNNEST(data) WHERE key = 'dou-strong') AS strong,
+  (SELECT value FROM UNNEST(data) WHERE key = 'fulltext') AS fulltext,
+  -- Concatenação de todos os campos de texto:
+    CONCAT(IFNULL((SELECT value FROM UNNEST(data) WHERE key = 'titulo'), ''), ' | ', 
+    IFNULL((SELECT value FROM UNNEST(data) WHERE key = 'subtitulo'), ''), ' | ',
+    IFNULL((SELECT value FROM UNNEST(data) WHERE key = 'ementa'), ''), ' | ', 
+    IFNULL((SELECT value FROM UNNEST(data) WHERE key = 'dou-strong'), ''), ' | ', 
+    IFNULL((SELECT value FROM UNNEST(data) WHERE key = 'dou-em'), ''), ' | ', 
+    IFNULL((SELECT value FROM UNNEST(data) WHERE key = 'dou-paragraph'), '')) AS alltext, 
+  -- Primeiro trecho dos parágrafos do artigo:
+  (SELECT 
+    CASE ARRAY_LENGTH(SPLIT(value, '|')) > 1
+      WHEN FALSE THEN SUBSTR(value, 300) 
+      ELSE CONCAT(SUBSTR(SPLIT(value, '|')[OFFSET(0)],1,200), '... | ...', SUBSTR(SPLIT(value, '|')[OFFSET(1)],1,200)) 
+    END
+    FROM UNNEST(data) WHERE key = 'dou-paragraph'
+    ) AS resumo, 
+  -- Responsáveis pelo artigo:
+  (SELECT value FROM UNNEST(data) WHERE key = 'assina') AS assina,
+  (SELECT value FROM UNNEST(data) WHERE key = 'cargo') AS cargo,
+  -- Id. da publicação: 
+  SAFE_CAST((SELECT SPLIT(SPLIT(value,'|')[OFFSET(0)],':')[OFFSET(1)] FROM UNNEST(data) WHERE key = 'secao-dou') AS INT64) AS secao,
+  (SELECT value FROM UNNEST(data) WHERE key = 'edicao-dou-data') AS edicao,
+  (SELECT value FROM UNNEST(data) WHERE key = 'secao-dou-data') AS pagina,
+  (SELECT parse_date('%d/%m/%Y', value) FROM UNNEST(data) WHERE key = 'publicado-dou-data') AS data_pub,
+  -- Links e info da captura:
+  url_certificado,
+  url,
+  PARSE_DATETIME('%Y-%m-%d %H:%M:%S', capture_date) AS capture_date 
+  --, n_keys, n_keys_distinct,           -- FOR DEBUGGING IN CASE OF ERROR "Scalar subquery produced more than one element" 
+FROM grouped
+--WHERE n_keys != n_keys_distinct        -- FOR DEBUGGING IN CASE OF ERROR "Scalar subquery produced more than one element" 
+--ORDER BY n_keys, n_keys_distinct ASC   -- FOR DEBUGGING IN CASE OF ERROR "Scalar subquery produced more than one element" 
 
-/* Orgão */
-orgao_table AS
-(SELECT url, value AS orgao
-FROM `gabinete-compartilhado.executivo_federal_dou.bruto_dou`
-WHERE key = 'orgao-dou-data'),
-
-/* Quem assina */
-assina_table AS
-(SELECT url, value AS assina
-FROM `gabinete-compartilhado.executivo_federal_dou.bruto_dou`
-WHERE key = 'assina'),
-
-/* Identificação do artigo */
-identifica_table AS
-(SELECT url, value AS identifica
-FROM `gabinete-compartilhado.executivo_federal_dou.bruto_dou`
-WHERE key = 'identifica'),
-
-/* Identificação do cargo do assinante */
-cargo_table AS
-(SELECT url, value AS cargo
-FROM `gabinete-compartilhado.executivo_federal_dou.bruto_dou`
-WHERE key = 'cargo'),
-
-/* Página do DOU */
-pagina_table AS
-(SELECT url, value AS pagina
-FROM `gabinete-compartilhado.executivo_federal_dou.bruto_dou`
-WHERE key = 'secao-dou-data'),
-
-/* Edição do DOU */
-edicao_table AS
-(SELECT url, value AS edicao
-FROM `gabinete-compartilhado.executivo_federal_dou.bruto_dou`
-WHERE key = 'edicao-dou-data'),
-
-/* Palavras enfatizadas */
-italico_table AS
-(SELECT url, value AS italico
-FROM `gabinete-compartilhado.executivo_federal_dou.bruto_dou`
-WHERE key = 'dou-em'),
-
-/* Ementa */
-ementa_table AS
-(SELECT url, value AS ementa
-FROM `gabinete-compartilhado.executivo_federal_dou.bruto_dou`
-WHERE key = 'ementa'),
-
-/* Palavras enfatizadas / títulos */
-strong_table AS
-(SELECT url, value AS strong
-FROM `gabinete-compartilhado.executivo_federal_dou.bruto_dou`
-WHERE key = 'dou-strong'),
-
-/* Aparentamente o órgão de um ato do executivo */
-ato_orgao_table AS
-(SELECT url, value AS ato_orgao
-FROM `gabinete-compartilhado.executivo_federal_dou.bruto_dou`
-WHERE key = 'titulo'),
-
-/* Sub-título de artigos */
-subtitulo_table AS
-(SELECT url, value AS subtitulo
-FROM `gabinete-compartilhado.executivo_federal_dou.bruto_dou`
-WHERE key = 'subtitulo'),
-
-/* Parágrafo e resumo dos artigos */
-paragraph_table AS
-(SELECT url, value AS paragraph,
-
-CASE ARRAY_LENGTH(split(value, '|')) > 1
-WHEN FALSE THEN
-substr(value, 300) 
-ELSE
-concat(substr(split(value, '|')[offset(0)],1,200), '... | ...', substr(split(value, '|')[offset(1)],1,200))
-END AS resumo
-
-FROM `gabinete-compartilhado.executivo_federal_dou.bruto_dou`
-WHERE key = 'dou-paragraph'),
-
-/* Linhas únicas de cada artigo */
-ref_table AS
-(SELECT DISTINCT url, capture_date, url_certificado
-FROM `gabinete-compartilhado.executivo_federal_dou.bruto_dou`)
-
-/* Cria a tabela com as colunas extras */
-SELECT 
-/* Colunas de identificação, comuns ao artigo */
-PARSE_DATETIME('%Y-%m-%d %H:%M:%S', ref.capture_date) AS capture_date,
-ref.url, ref.url_certificado,
-/* Entradas chave */
-date_table.pub_date, secao_table.secao, edicao_table.edicao, pagina_table.pagina, 
-identifica_table.identifica, orgao_table.orgao, assina_table.assina, cargo_table.cargo,  
-/* Entradas com texto a serem buscadas */
-ato_orgao_table.ato_orgao, subtitulo_table.subtitulo, ementa_table.ementa, 
-strong_table.strong, italico_table.italico, paragraph_table.paragraph,
-CONCAT(IFNULL(ato_orgao_table.ato_orgao,''), ' | ', IFNULL(subtitulo_table.subtitulo,''), ' | ', 
-       IFNULL(ementa_table.ementa,''), ' | ', IFNULL(strong_table.strong,''), ' | ', 
-       IFNULL(italico_table.italico,''), ' | ', IFNULL(paragraph_table.paragraph, '')) AS alltext,
-/* Entradas auxiliares */
-paragraph_table.resumo 
-
-/* Join com as tabelas de cada key */
-FROM ref_table AS ref
-LEFT JOIN       date_table ON ref.url =       date_table.url
-LEFT JOIN      secao_table ON ref.url =      secao_table.url
-LEFT JOIN      orgao_table ON ref.url =      orgao_table.url
-LEFT JOIN     assina_table ON ref.url =     assina_table.url
-LEFT JOIN identifica_table ON ref.url = identifica_table.url
-LEFT JOIN      cargo_table ON ref.url =      cargo_table.url
-LEFT JOIN     pagina_table ON ref.url =     pagina_table.url
-LEFT JOIN     edicao_table ON ref.url =     edicao_table.url
-LEFT JOIN    italico_table ON ref.url =    italico_table.url
-LEFT JOIN     ementa_table ON ref.url =     ementa_table.url
-LEFT JOIN     strong_table ON ref.url =     strong_table.url
-LEFT JOIN  ato_orgao_table ON ref.url =  ato_orgao_table.url
-LEFT JOIN  subtitulo_table ON ref.url =  subtitulo_table.url
-LEFT JOIN  paragraph_table ON ref.url =  paragraph_table.url
