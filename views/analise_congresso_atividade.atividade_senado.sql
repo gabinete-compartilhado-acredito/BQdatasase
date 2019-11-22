@@ -91,7 +91,7 @@ END AS despacho,
 p.DadosBasicosMateria.EmentaMateria,
 CONCAT('https://www25.senado.leg.br/web/atividade/materias/-/materia/', CAST(IdentificacaoMateria.CodigoMateria AS STRING)) AS url,
 -- Tipo de atividade:
-'Apres. PL/PEC/PDL/PLP' AS tipo_atividade
+'Propostas apresentadas' AS tipo_atividade
 -- From:
 FROM `gabinete-compartilhado.senado.proposicoes` AS p
 LEFT JOIN `gabinete-compartilhado.congresso.partidos_novas_siglas` as part

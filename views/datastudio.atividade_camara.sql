@@ -16,7 +16,7 @@ THEN 'Obstruções da discussão (Plenário)'
 WHEN descricao_tramitacao = 'Discussão da Materia pelos Deputados' OR LOWER(despacho) LIKE '%discutiu a matéria%'
 THEN 'Discussões de matéria'
 WHEN descricao_tramitacao = 'Aprovação de Requerimento'
-THEN 'Aprovações de requerimentos'
+THEN 'Requerimentos aprovados'
 WHEN descricao_tramitacao = 'Apresentação de Proposição' AND sigla_tipo = 'REQ' 
 AND (lower(despacho) LIKE '%audiência pública%' OR lower(despacho) LIKE '%audiências públicas%' OR lower(despacho) LIKE '%palestra%'
      OR lower(despacho) LIKE '%seminário%') 
@@ -30,7 +30,7 @@ WHEN descricao_tramitacao = 'Apresentação de Proposição'
      AND (LOWER(despacho) LIKE '%apresentação __ projeto __ lei%' OR 
           LOWER(despacho) LIKE '%apresentação __ projeto __ decreto legislativo%' OR 
           LOWER(despacho) LIKE '%apresentação __ proposta __ emenda%')
-THEN 'Apres. de propostas/projetos'
+THEN 'Propostas apresentadas'
 ELSE 'Outros'
 END AS tipo_atividade
 

@@ -18,6 +18,8 @@ analise_congresso_poder                    ----------
   cargo_score                              (EXTERNAL)
 
 analise_congresso_votacoes                 ----------
+  alinhamento_rigoni_deputados             (VIEW)
+  alinhamento_tabata_deputados             (VIEW)
   camara_alinhamentos                      (VIEW)
   camara_deputado_deputado                 (VIEW)
   camara_orientacao_deputado               (VIEW)
@@ -213,14 +215,11 @@ siconv                                     ----------
   data_carga                               (TABLE)
 
 testing_mess                               ----------
-  deputados_detalhes                       (EXTERNAL)
   for_                                     (TABLE)
   parsed_dou                               (EXTERNAL)
   raw_dou                                  (EXTERNAL)
   senado_senador_votacoes                  (VIEW)
-  senador_votacoes                         (EXTERNAL)
   struct_dou                               (EXTERNAL)
-  temp_tramitacoes_art54                   (TABLE)
 
 tratado_tse                                ----------
   orgaos_partidarios                       (TABLE)
