@@ -1,12 +1,15 @@
-/* Cria uma tabela de ID para as votações a partir de 4 colunas ordenadas */
+/* Cria uma tabela de ID para as votações a partir de 6 colunas ordenadas */
 WITH id_votacao AS (
   SELECT SessaoPlenaria.DataSessao AS data, 
     IdentificacaoMateria.NumeroMateria AS numMateria, 
     DescricaoVotacao AS descricaoVotacao, 
-    DescricaoResultado AS resultado, 
-    row_number() OVER (ORDER BY SessaoPlenaria.DataSessao, IdentificacaoMateria.NumeroMateria, DescricaoVotacao, DescricaoResultado) AS num_votacao
+    DescricaoResultado AS resultado,
+    CodigoSessaoVotacao AS cod_sessao_votacao,
+    Sequencial AS sequencial,
+    row_number() OVER (ORDER BY SessaoPlenaria.DataSessao, IdentificacaoMateria.NumeroMateria, DescricaoVotacao, DescricaoResultado, CodigoSessaoVotacao, Sequencial) 
+      AS num_votacao
   FROM `gabinete-compartilhado.senado.senador_votacoes` 
-  GROUP BY IdentificacaoMateria.NumeroMateria, DescricaoVotacao, SessaoPlenaria.DataSessao, DescricaoResultado
+  GROUP BY IdentificacaoMateria.NumeroMateria, DescricaoVotacao, SessaoPlenaria.DataSessao, DescricaoResultado, CodigoSessaoVotacao, Sequencial
 )
 
 /* Cria tabela com número da votação acima e id do senador */
@@ -51,5 +54,7 @@ WHERE id_votacao.data = v.SessaoPlenaria.DataSessao
 AND id_votacao.numMateria = v.IdentificacaoMateria.NumeroMateria 
 AND id_votacao.descricaoVotacao = v.DescricaoVotacao 
 AND id_votacao.resultado = v.DescricaoResultado
+AND id_votacao.cod_sessao_votacao = v.CodigoSessaoVotacao
+AND id_votacao.sequencial = v.Sequencial
 
-order by num_votacao
+ORDER BY num_votacao
