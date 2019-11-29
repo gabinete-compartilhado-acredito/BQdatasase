@@ -1,7 +1,7 @@
 -- Tabela de atividade parlamentar no senado --
 
 -- Primeira parte: a partir da tabela de tramitações: 
-SELECT t.nome_autor, t.sigla_partido_autor, t.sigla_uf_autor, t.data_tramitacao_real, t.sigla_orgao, t.despacho, t.ementa,
+SELECT t.nome_autor, s.partido_sigla_nova AS sigla_partido_autor, t.sigla_uf_autor, t.data_tramitacao_real, t.sigla_orgao, t.despacho, t.ementa,
 CONCAT('https://www25.senado.leg.br/web/atividade/materias/-/materia/', CAST(id AS STRING)) AS url,
 CASE
 -- Requerimento de informação:
@@ -19,6 +19,8 @@ WHEN t.sigla_tipo = 'REQ' AND LOWER(t.despacho) LIKE '%apresent%'
 THEN 'Pedidos de audiência pública'
 END AS tipo_atividade
 FROM `gabinete-compartilhado.congresso.senado_tramitacao` AS t
+LEFT JOIN `gabinete-compartilhado.senado_processed.senadores_expandida` AS s
+ON t.nome_autor = s.IdentificacaoParlamentar.NomeParlamentar 
 WHERE t.data_tramitacao_real >= '2019-02-01'
 -- Apenas seleciona tramitações classificadas em uma das categorias acima:
 AND (
@@ -78,7 +80,7 @@ UNION ALL
 SELECT 
 -- Informações sobre o autor:
 p.Autoria.Autor[OFFSET(0)].NomeAutor, 
-part.sigla_nova,
+s.partido_sigla_nova AS sigla_partido_autor,
 p.Autoria.Autor[OFFSET(0)].IdentificacaoParlamentar.UfParlamentar,
 -- Informações sobre a matéria/tramitação:
 p.DadosBasicosMateria.DataApresentacao,
@@ -94,8 +96,8 @@ CONCAT('https://www25.senado.leg.br/web/atividade/materias/-/materia/', CAST(Ide
 'Propostas apresentadas' AS tipo_atividade
 -- From:
 FROM `gabinete-compartilhado.senado.proposicoes` AS p
-LEFT JOIN `gabinete-compartilhado.congresso.partidos_novas_siglas` as part
-ON p.Autoria.Autor[OFFSET(0)].IdentificacaoParlamentar.SiglaPartidoParlamentar = part.sigla_antiga 
+LEFT JOIN `gabinete-compartilhado.senado_processed.senadores_expandida` AS s
+ON p.Autoria.Autor[OFFSET(0)].NomeAutor = s.IdentificacaoParlamentar.NomeParlamentar 
 WHERE LOWER(p.Autoria.Autor[OFFSET(0)].DescricaoTipoAutor) LIKE 'senador'
 AND p.IdentificacaoMateria.SiglaSubtipoMateria IN ('MP','MPV','PDC','PDL','PEC','PL','PLP','PLS','PLN','PDS','PDN','PLV')
 AND p.DadosBasicosMateria.DataApresentacao >= '2019-02-01'

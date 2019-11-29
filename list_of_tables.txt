@@ -146,7 +146,6 @@ datastudio                                 ----------
   atividade_camara_agregada                (VIEW)
   atividade_senado_                        (TABLE)
   atividade_senado_agregada                (VIEW)
-  camara_proposicoes_sel                   (TABLE)
   camara_proposicoes_sel_                  (TABLE)
   contabilidade_assinatura_agrupada        (VIEW)
   contabilidade_assinatura_agrupada_       (TABLE)
@@ -219,6 +218,7 @@ testing_mess                               ----------
   parsed_dou                               (EXTERNAL)
   raw_dou                                  (EXTERNAL)
   senado_senador_votacoes                  (VIEW)
+  senador_relatorias                       (EXTERNAL)
   struct_dou                               (EXTERNAL)
 
 tratado_tse                                ----------
