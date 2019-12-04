@@ -6,6 +6,6 @@
 
 jobid=$1
 
-conda activate base
+#conda activate base
 bq --format=prettyjson show -j $jobid
-conda activate python3
+#conda activate python3

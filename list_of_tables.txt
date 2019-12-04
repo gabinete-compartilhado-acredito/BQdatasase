@@ -4,6 +4,8 @@ analise_congresso_atividade                ----------
   atividade_senado                         (VIEW)
   camara_deputados_semihomonimos_          (TABLE)
   camara_proposicoes_autores_              (TABLE)
+  deputados_temas_interesse                (VIEW)
+  deputados_temas_interesse_consolidado    (VIEW)
   tramitacao_por_parlamentar               (VIEW)
   tramitacao_por_parlamentar_              (TABLE)
 
@@ -214,7 +216,6 @@ siconv                                     ----------
   data_carga                               (TABLE)
 
 testing_mess                               ----------
-  for_                                     (TABLE)
   parsed_dou                               (EXTERNAL)
   raw_dou                                  (EXTERNAL)
   senado_senador_votacoes                  (VIEW)
