@@ -36,7 +36,9 @@ SELECT
   -- Info do deputado:
   g.id_deputado, g.nome, g.sigla_partido, g.uf, g.voto_padronizado AS voto,
   -- Info da orientação do governo:
-  p.orientacao_partido AS orient_part, g.orientacao_governo AS orient_gov, 
+  p.orientacao_partido AS orient_part, g.orientacao_governo AS orient_gov,
+  -- Alinhamento ao partido:
+  p.apoio_partido,
   -- Alinhamento ao governo:
   CASE
     WHEN p.orientacao_partido = 'Obstrução' AND p.voto_padronizado = 'Ausente' 

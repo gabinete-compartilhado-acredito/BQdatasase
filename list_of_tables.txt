@@ -10,6 +10,7 @@ analise_congresso_atividade                ----------
   tramitacao_por_parlamentar_              (TABLE)
 
 analise_congresso_poder                    ----------
+  camara_bancadas_publica_consolidado      (VIEW)
   camara_bloco_numero_membros              (VIEW)
   camara_cargos_score                      (TABLE)
   camara_liderancas                        (VIEW)
@@ -35,9 +36,11 @@ analise_indicacoes_federal                 ----------
   dou_e_comissionados_raw                  (TABLE)
 
 bruto_gabinete_administrativo              ----------
+  camara_bancadas_publica_2016             (EXTERNAL)
   contabilidade_assinaturas                (VIEW)
   contabilidade_assinaturas_formulario     (EXTERNAL)
   contabilidade_assinaturas_manual         (EXTERNAL)
+  liderancas_raps                          (EXTERNAL)
   parlamentares_renovabr                   (EXTERNAL)
   proposicoes_interesse                    (EXTERNAL)
 
@@ -151,6 +154,8 @@ datastudio                                 ----------
   camara_proposicoes_sel_                  (TABLE)
   contabilidade_assinatura_agrupada        (VIEW)
   contabilidade_assinatura_agrupada_       (TABLE)
+  deputado_interesse_tema_alinhamentos_    (TABLE)
+  perfil_deputados_                        (TABLE)
 
 executivo_federal_dou                      ----------
   artigos_com_campos_sel                   (VIEW)
@@ -181,6 +186,7 @@ paineis                                    ----------
   apoio_ao_governo_por_deputado            (VIEW)
   apoio_ao_governo_por_votacao             (VIEW)
   apoio_deputados_governo                  (VIEW)
+  apoio_deputados_governo_consolidado      (VIEW)
   camara_deputado_deputado                 (VIEW)
   camara_orientacao_deputado               (TABLE)
   camara_orientacao_deputado_old           (TABLE)
