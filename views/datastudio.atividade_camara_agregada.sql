@@ -25,7 +25,7 @@ SELECT
 
 ROW_NUMBER() OVER (ORDER BY dep.nome_parlamentar) AS alpha_order,
 -- Info do parlamentar:
-dep.nome_parlamentar, dep.sigla_partido, dep.sigla_uf, 
+sen.id, dep.nome_parlamentar, dep.sigla_partido, dep.sigla_uf, 
 
 -- Aprov. de requerimento (# absoluto; posição do ranking; percentil do deputado):
 dep.aprov_req, 
@@ -86,7 +86,7 @@ ON dep.nome_parlamentar = sen.ultimoStatus_nome
 
 CROSS JOIN agg AS todos
 GROUP BY 
-  dep.nome_parlamentar, dep.sigla_partido, dep.sigla_uf,
+  sen.id, dep.nome_parlamentar, dep.sigla_partido, dep.sigla_uf,
   dep.aprov_req, dep.discussao_materia, dep.obstrucao, dep.outros,
   dep.aud_publica, dep.desarquivamento, dep.informacao, dep.relat_assumidas, dep.relat_entregues, dep.apresenta_pro 
 
