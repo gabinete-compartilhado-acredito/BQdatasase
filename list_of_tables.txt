@@ -21,6 +21,7 @@ analise_congresso_poder                    ----------
   cargo_score                              (EXTERNAL)
 
 analise_congresso_votacoes                 ----------
+  alinhamento_alessandro_senadores         (VIEW)
   alinhamento_rigoni_deputados             (VIEW)
   alinhamento_tabata_deputados             (VIEW)
   camara_alinhamentos                      (VIEW)
@@ -30,6 +31,7 @@ analise_congresso_votacoes                 ----------
   camara_votacao_deputado                  (TABLE)
   senado_orientacao_senadores              (VIEW)
   senado_orientacao_senadores_tab          (TABLE)
+  senado_senador_senador                   (VIEW)
 
 analise_indicacoes_federal                 ----------
   dou_bruto                                (TABLE)
@@ -79,7 +81,6 @@ camara_v2                                  ----------
   blocos                                   (EXTERNAL)
   deputados                                (EXTERNAL)
   deputados_despesas                       (EXTERNAL)
-  deputados_despesas_completo              (EXTERNAL)
   deputados_detalhes                       (EXTERNAL)
   deputados_discursos                      (EXTERNAL)
   deputados_eventos                        (EXTERNAL)
@@ -203,6 +204,7 @@ paineis                                    ----------
   camara_orientacao_orientacao             (VIEW)
   camara_votacao_bancada                   (VIEW)
   camara_votacao_deputado                  (TABLE)
+  perfil_deputados                         (VIEW)
   proposicoes_displaced                    (TABLE)
   proposicoes_proposicoes                  (VIEW)
   proposicoes_temas                        (VIEW)
@@ -231,11 +233,9 @@ siconv                                     ----------
   data_carga                               (TABLE)
 
 testing_mess                               ----------
-  parsed_dou                               (EXTERNAL)
-  raw_dou                                  (EXTERNAL)
-  senado_senador_votacoes                  (VIEW)
+  atividade_senado_desde_2015              (TABLE)
   senador_relatorias                       (EXTERNAL)
-  struct_dou                               (EXTERNAL)
+  temp_votacoes_orientadas_2019            (TABLE)
 
 tratado_tse                                ----------
   orgaos_partidarios                       (TABLE)
