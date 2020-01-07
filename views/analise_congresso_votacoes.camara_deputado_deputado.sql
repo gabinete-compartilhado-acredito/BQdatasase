@@ -43,8 +43,8 @@ SELECT
     ELSE 0
   END AS alinhamento
   
-FROM       `gabinete-compartilhado.camara_v1_processed.proposicao_votacao_deputado_processed` AS t1
-CROSS JOIN `gabinete-compartilhado.camara_v1_processed.proposicao_votacao_deputado_processed` AS t2
+FROM       `gabinete-compartilhado.camara_v1_processed.proposicao_votacao_deputado_orientado` AS t1
+CROSS JOIN `gabinete-compartilhado.camara_v1_processed.proposicao_votacao_deputado_orientado` AS t2
 
 -- Linka dados dentro das mesmas votações:
 WHERE t1.timestamp = t2.timestamp 

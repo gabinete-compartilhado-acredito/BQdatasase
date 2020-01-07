@@ -71,9 +71,11 @@ camara_v1_processed                        ----------
   deputados_detalhes_info_cleaned          (VIEW)
   deputados_detalhes_liderancas_cleaned    (VIEW)
   deputados_detalhes_nomes_cleaned         (VIEW)
+  proposicao_votacao_bancada_blocos        (VIEW)
   proposicao_votacao_bancada_cleaned       (VIEW)
   proposicao_votacao_bancada_expandida     (VIEW)
   proposicao_votacao_deputado_cleaned      (VIEW)
+  proposicao_votacao_deputado_orientado    (VIEW)
   proposicao_votacao_deputado_processed    (VIEW)
   proposicoes_tramitadas_periodo_cleaned   (VIEW)
 
