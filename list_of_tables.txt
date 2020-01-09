@@ -71,6 +71,8 @@ camara_v1_processed                        ----------
   deputados_detalhes_info_cleaned          (VIEW)
   deputados_detalhes_liderancas_cleaned    (VIEW)
   deputados_detalhes_nomes_cleaned         (VIEW)
+  liderancas_cleaned                       (VIEW)
+  liderancas_stacked                       (VIEW)
   proposicao_votacao_bancada_blocos        (VIEW)
   proposicao_votacao_bancada_cleaned       (VIEW)
   proposicao_votacao_bancada_expandida     (VIEW)
@@ -104,6 +106,7 @@ camara_v2                                  ----------
 
 camara_v2_processed                        ----------
   deputados_detalhes_cleaned               (VIEW)
+  deputados_orgaos_cleaned                 (VIEW)
   eventos_cleaned                          (VIEW)
   eventos_completa                         (VIEW)
   eventos_orgaos_agregada                  (VIEW)
