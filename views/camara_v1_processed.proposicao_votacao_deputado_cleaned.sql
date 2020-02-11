@@ -1,5 +1,9 @@
 /*** Arruma e limpa os dados brutos "proposicao_votacao_deputado", 
-     sem misturar com outras bases, com exceção das novas siglas dos partidos ***/
+     sem misturar com outras bases, com exceção das novas siglas dos partidos.
+     
+     PS: removemos id_deputado = NULL que são senadores (que talvez apareçam por 
+     causa de sessões conjuntas do congresso) 
+ ***/
 
 SELECT
   -- Info sobre a votação:
@@ -26,3 +30,4 @@ SELECT
 FROM `gabinete-compartilhado.camara_v1.proposicao_votacao_deputado` AS v
 LEFT JOIN `gabinete-compartilhado.congresso.partidos_novas_siglas` AS p
 ON TRIM(v.Partido) = p.sigla_antiga
+WHERE v.ideCadastro IS NOT NULL

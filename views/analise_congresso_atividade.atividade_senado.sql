@@ -47,7 +47,7 @@ SELECT d.NomeParlamentar, d.partido_sigla_nova, d.uf_ultimo_mandato, d.data_tram
 CONCAT('https://www25.senado.leg.br/web/atividade/materias/-/materia/', CAST(d.id_proposicao AS STRING)) AS url,
 'Pedidos de desarquivamento' AS tipo_atividade
 FROM `gabinete-compartilhado.congresso.senado_desarquivamentos` AS d
-WHERE sigla_tipo IN ('MP','MPV','PDC','PDL','PEC','PL','PLP','PLS','PLN','PDS','PDN','PLV')
+WHERE sigla_tipo IN ('MP','MPV','PDC','PDL','PEC','PL','PLP','PLS','PLN','PDS','PDN','PLV','PLC')
 AND data_tramitacao_real >= '2019-02-01'
 
 
@@ -61,7 +61,7 @@ CONCAT('https://www25.senado.leg.br/web/atividade/materias/-/materia/', CAST(cod
 'Relatorias assumidas' AS tipo_atividade
 FROM `gabinete-compartilhado.congresso.senado_senador_relatorias` AS r
 WHERE r.data_designacao >= '2019-02-01'
-AND r.sigla_tipo_materia IN ('MP','MPV','PDC','PDL','PEC','PL','PLP','PLS','PLN','PDS','PDN','PLV')
+AND r.sigla_tipo_materia IN ('MP','MPV','PDC','PDL','PEC','PL','PLP','PLS','PLN','PDS','PDN','PLV','PLC')
 AND r.tipo_relator = 'Relator'
 
 UNION ALL
@@ -71,7 +71,7 @@ SELECT e.NomeParlamentar, e.partido_sigla_nova, e.uf_ultimo_mandato, e.data_tram
 CONCAT('https://www25.senado.leg.br/web/atividade/materias/-/materia/', CAST(e.id_proposicao AS STRING)) AS url,
 'Relatorias entregues' AS tipo_atividade
 FROM `gabinete-compartilhado.congresso.senado_relatorias_entregues` AS e
-WHERE sigla_tipo IN ('MP','MPV','PDC','PDL','PEC','PL','PLP','PLS','PLN','PDS','PDN','PLV')
+WHERE sigla_tipo IN ('MP','MPV','PDC','PDL','PEC','PL','PLP','PLS','PLN','PDS','PDN','PLV','PLC')
 AND data_tramitacao_real >= '2019-02-01'
 
 UNION ALL
@@ -99,5 +99,5 @@ FROM `gabinete-compartilhado.senado.proposicoes` AS p
 LEFT JOIN `gabinete-compartilhado.senado_processed.senadores_expandida` AS s
 ON p.Autoria.Autor[OFFSET(0)].NomeAutor = s.IdentificacaoParlamentar.NomeParlamentar 
 WHERE LOWER(p.Autoria.Autor[OFFSET(0)].DescricaoTipoAutor) LIKE 'senador'
-AND p.IdentificacaoMateria.SiglaSubtipoMateria IN ('MP','MPV','PDC','PDL','PEC','PL','PLP','PLS','PLN','PDS','PDN','PLV')
+AND p.IdentificacaoMateria.SiglaSubtipoMateria IN ('MP','MPV','PDC','PDL','PEC','PL','PLP','PLS','PLN','PDS','PDN','PLV','PLC')
 AND p.DadosBasicosMateria.DataApresentacao >= '2019-02-01'

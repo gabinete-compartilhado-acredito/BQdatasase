@@ -6,6 +6,7 @@ analise_congresso_atividade                ----------
   camara_proposicoes_autores_              (TABLE)
   deputados_temas_interesse                (VIEW)
   deputados_temas_interesse_consolidado    (VIEW)
+  politicos_renovacao_2019_todos           (VIEW)
   tramitacao_por_parlamentar               (VIEW)
   tramitacao_por_parlamentar_              (TABLE)
 
@@ -46,12 +47,14 @@ bruto_gabinete_administrativo              ----------
   liderancas_raps                          (EXTERNAL)
   parlamentares_grupos_suprapartidarios    (EXTERNAL)
   parlamentares_renovabr                   (EXTERNAL)
+  perfil_twitter_deputado                  (EXTERNAL)
   proposicoes_interesse                    (EXTERNAL)
 
 bruto_tse                                  ----------
   orgaos_partidarios                       (TABLE)
 
 camara_v1                                  ----------
+  aguardo_designacao_relator_ce            (EXTERNAL)
   deputados_blocos                         (EXTERNAL)
   deputados_comissionados                  (EXTERNAL)
   deputados_detalhes                       (EXTERNAL)
@@ -62,6 +65,7 @@ camara_v1                                  ----------
   proposicoes_votadas_plenario             (EXTERNAL)
 
 camara_v1_processed                        ----------
+  aguardo_designacao_relator_ce_cleaned    (VIEW)
   deputados_blocos_cleaned                 (VIEW)
   deputados_comissionados_cleaned          (VIEW)
   deputados_comissionados_combined         (VIEW)
@@ -106,6 +110,7 @@ camara_v2                                  ----------
 
 camara_v2_processed                        ----------
   deputados_detalhes_cleaned               (VIEW)
+  deputados_discursos_cleaned              (VIEW)
   deputados_orgaos_cleaned                 (VIEW)
   eventos_cleaned                          (VIEW)
   eventos_completa                         (VIEW)
@@ -185,7 +190,6 @@ executivo_federal_servidores               ----------
   sample_cadastro                          (TABLE)
 
 gabi_bot                                   ----------
-  artigos_dou_last30minutos                (VIEW)
   camara_tramitacao_last30minutos          (TABLE)
   config_gabi                              (EXTERNAL)
   gabi_filters                             (EXTERNAL)
@@ -216,6 +220,13 @@ paineis                                    ----------
   sched_apoio_governo_por_votacao          (TABLE)
   senado_apoio_ao_governo_por_votacao      (VIEW)
 
+receita_federal                            ----------
+  cnaes_secundarias                        (EXTERNAL)
+  cnaes_secundarias_cleaned                (VIEW)
+  empresas                                 (EXTERNAL)
+  socios                                   (EXTERNAL)
+  socios_cleaned                           (VIEW)
+
 senado                                     ----------
   lider_governo_senado                     (EXTERNAL)
   proposicoes                              (EXTERNAL)
@@ -239,9 +250,20 @@ siconv                                     ----------
 
 testing_mess                               ----------
   atividade_senado_desde_2015              (TABLE)
-  senador_relatorias                       (EXTERNAL)
+  temp_camara_tramitacao_2019              (TABLE)
   temp_votacoes_orientadas_2019            (TABLE)
+  test_consulta_cand                       (EXTERNAL)
 
 tratado_tse                                ----------
+  consulta_cand                            (EXTERNAL)
+  consulta_cand_2018                       (EXTERNAL)
+  doador_originario_2018                   (EXTERNAL)
   orgaos_partidarios                       (TABLE)
+  receitas_candidatos_2018                 (EXTERNAL)
+
+tratado_tse_processed                      ----------
+  consulta_cand_2018_cleaned               (VIEW)
+  doador_originario_2018_cleaned           (VIEW)
+  receitas_candidatos_2018_cleaned         (VIEW)
+  receitas_completas_2018                  (VIEW)
 

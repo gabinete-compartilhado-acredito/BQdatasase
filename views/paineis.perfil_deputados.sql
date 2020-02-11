@@ -1,4 +1,4 @@
-/***
+/*
     Esta tabela consolida todas as informações (traça um perfil) dos deputados, em formato de apresentação:
     - Temas de interesse;
     - Bancadas (segundo levantamento da Pública 2016);
@@ -6,7 +6,10 @@
     - Alinhamento com governo;
     - Alinhamento com Tabata;
     - Alinhamento com Rigoni.
- ***/
+    - Cargos de liderança em partidos/blocos;
+    - Cargos de direção em comissões/mesa diretora;
+    - Participação em comissões.
+ */
 
 WITH 
 -- Tabela que consolida os 5 temas de maior interesse do deputado numa string:
@@ -44,6 +47,18 @@ cargos AS (
     -- Membros da mesa diretora:
     OR (sigla_orgao = 'MESA' AND titulo != 'Titular' AND titulo != 'Suplente'))
   GROUP BY id_deputado
+),
+-- Participação em comissões sem cargo de direção:
+comissao AS (
+  SELECT id_deputado, ARRAY_AGG(STRUCT(sigla_orgao, titulo, nome_orgao) ORDER BY codigo_titulo) AS comissoes
+  FROM `gabinete-compartilhado.camara_v2_processed.deputados_orgaos_cleaned`
+  WHERE 
+    -- Seleciona apenas cargos em vigor na atualidade:
+    CURRENT_DATETIME("-03") > data_inicio AND (data_fim IS NULL OR current_datetime("-03") < data_fim) 
+    -- Presidentes e vices de comissões:
+    AND (((titulo != 'Presidente' AND titulo NOT LIKE '%Vice-Presidente') AND LOWER(nome_orgao) LIKE '%comissão%'))
+   
+GROUP BY id_deputado
 )
 
 SELECT
@@ -57,6 +72,8 @@ SELECT
   lider.liderancas,
   -- Presidência e vice de comissões e membro da mesa diretora:
   cargos.orgaos,
+  -- Participação em comissões mas sem cargo de direção:
+  comissao.comissoes,
   -- Alinhamento com próprio partido e governo:
   g.alinhamento_partido, g.alinhamento_gov,
   -- Alinhamento com parlamentares do Acredito:
@@ -69,3 +86,4 @@ LEFT JOIN `gabinete-compartilhado.analise_congresso_votacoes.alinhamento_rigoni_
 LEFT JOIN `gabinete-compartilhado.paineis.apoio_deputados_governo_consolidado`  AS g ON t.id_deputado = g.id_deputado
 LEFT JOIN lider ON t.id_deputado = lider.id_deputado
 LEFT JOIN cargos ON t.id_deputado = cargos.id_deputado
+LEFT JOIN comissao ON t.id_deputado = comissao.id_deputado

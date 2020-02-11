@@ -4,7 +4,8 @@ v.DataSessao, v.num_votacao, v.DescricaoVotacao, v.votacaoSecreta,
 -- Descrição da matéria:
 v.tipoMateria, v.NumeroMateria, v.AnoMateria,
 -- Descrição do senador:
-v.id_senador, v.nome_senador, v.partido_senador, v.uf_senador, i.IdentificacaoParlamentar.UrlPaginaParlamentar AS url_senador,
+v.id_senador, v.nome_senador, v.partido_senador, v.uf_senador, 
+CONCAT('https://www25.senado.leg.br/web/senadores/senador/-/perfil/', CAST(id_senador AS STRING)) AS url_senador,
 -- Voto do senador e do governo:
 v.SiglaDescricaoVoto, g.SiglaDescricaoVoto as voto_governo, g.orient_gov,
 -- Cálculo de apoio ao governo:
@@ -21,5 +22,3 @@ END AS apoio
 FROM `gabinete-compartilhado.congresso.senado_senador_votacoes` AS v 
 LEFT JOIN `gabinete-compartilhado.congresso.senado_orientacao_governo` AS g
 ON g.num_votacao = v.num_votacao
-LEFT JOIN `gabinete-compartilhado.senado.senador_lista_atual` AS i
-ON v.id_senador = i.IdentificacaoParlamentar.CodigoParlamentar 

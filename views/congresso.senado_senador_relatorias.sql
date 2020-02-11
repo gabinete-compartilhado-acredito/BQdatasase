@@ -8,6 +8,7 @@ SELECT
   -- Informações sobre 
   PARSE_DATE('%Y-%m-%d', r.DataDesignacao) AS data_designacao,
   PARSE_DATE('%Y-%m-%d', r.DataDestituicao) AS data_destituicao,
+  r.DescricaoMotivoDestituicao AS motivo_destituicao,
   r.Comissao.IdentificacaoComissao.SiglaComissao AS sigla_comissao,
   r.Comissao.IdentificacaoComissao.NomeComissao AS comissao,
   r.Materia.IdentificacaoMateria.CodigoMateria AS codigo_materia,
