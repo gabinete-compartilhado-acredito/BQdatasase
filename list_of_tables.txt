@@ -1,24 +1,16 @@
 analise_congresso_atividade                ----------
-  apoio_deputados_governo                  (TABLE)
-  apoio_governo_votacao_test               (TABLE)
   atividade_senado                         (VIEW)
   camara_deputados_semihomonimos_          (TABLE)
-  camara_proposicoes_autores_              (TABLE)
   deputados_temas_interesse                (VIEW)
   deputados_temas_interesse_consolidado    (VIEW)
   politicos_renovacao_2019_todos           (VIEW)
-  tramitacao_por_parlamentar               (VIEW)
   tramitacao_por_parlamentar_              (TABLE)
 
 analise_congresso_poder                    ----------
   camara_bancadas_publica_consolidado      (VIEW)
   camara_bloco_numero_membros              (VIEW)
-  camara_cargos_score                      (TABLE)
   camara_liderancas                        (VIEW)
   camara_liderancas_score                  (VIEW)
-  camara_liderancas_socre_                 (TABLE)
-  camara_sigla_numero_membros              (VIEW)
-  camara_sigla_numero_membros_tab          (TABLE)
   cargo_score                              (EXTERNAL)
 
 analise_congresso_votacoes                 ----------
@@ -29,9 +21,6 @@ analise_congresso_votacoes                 ----------
   camara_deputado_deputado                 (VIEW)
   camara_orientacao_deputado               (VIEW)
   camara_orientacao_orientacao             (VIEW)
-  camara_votacao_deputado                  (TABLE)
-  senado_orientacao_senadores              (VIEW)
-  senado_orientacao_senadores_tab          (TABLE)
   senado_senador_senador                   (VIEW)
 
 analise_indicacoes_federal                 ----------
@@ -92,7 +81,6 @@ camara_v2                                  ----------
   deputados_detalhes                       (EXTERNAL)
   deputados_discursos                      (EXTERNAL)
   deputados_eventos                        (EXTERNAL)
-  deputados_info                           (EXTERNAL)
   deputados_mesa                           (EXTERNAL)
   deputados_orgaos                         (EXTERNAL)
   eventos                                  (EXTERNAL)
@@ -125,7 +113,6 @@ camara_v2_processed                        ----------
   proposicoes_processed                    (VIEW)
   proposicoes_temas_cleaned                (VIEW)
   proposicoes_temas_processed              (VIEW)
-  proposicoes_test                         (VIEW)
   proposicoes_tramitacoes                  (VIEW)
   tramitacoes_cleaned                      (VIEW)
   tramitacoes_ultima                       (VIEW)
@@ -138,28 +125,21 @@ congresso                                  ----------
   camara_deputados_semihomonimos           (VIEW)
   camara_deputados_semihomonimos_          (TABLE)
   camara_partidos_numero_membros           (VIEW)
-  camara_proposicoes_                      (VIEW)
-  camara_proposicoes_autores               (VIEW)
-  camara_proposicoes_autores_              (TABLE)
-  camara_proposicoes_relatoria             (VIEW)
   camara_resultados_votacoes               (VIEW)
   camara_votacao_bancada                   (VIEW)
   camara_votacao_deputado                  (VIEW)
   deputado_ano_inicial                     (VIEW)
   macro_temas                              (EXTERNAL)
-  parlamentares                            (VIEW)
   partidos_novas_siglas                    (EXTERNAL)
   proposicoes                              (VIEW)
   proposicoes_completa                     (VIEW)
   proposicoes_temas                        (VIEW)
   senado_desarquivamentos                  (VIEW)
   senado_orientacao_governo                (VIEW)
-  senado_proposicoes_temas                 (VIEW)
   senado_relatorias_entregues              (VIEW)
   senado_senador_relatorias                (VIEW)
   senado_senador_votacoes                  (VIEW)
   senado_tramitacao                        (VIEW)
-  senado_votacao_senador                   (VIEW)
   support_date_legislaturas                (VIEW)
   tramitacao                               (VIEW)
   tramitacao_                              (TABLE)
@@ -174,7 +154,6 @@ datastudio                                 ----------
   camara_proposicoes_sel_                  (TABLE)
   contabilidade_assinatura_agrupada        (VIEW)
   contabilidade_assinatura_agrupada_       (TABLE)
-  deputado_interesse_tema_alinhamentos_    (TABLE)
   perfil_deputados_                        (TABLE)
 
 executivo_federal_dou                      ----------
@@ -183,7 +162,6 @@ executivo_federal_dou                      ----------
   keys_2019_05_16                          (TABLE)
   keys_2019_10_25                          (TABLE)
   keys_atuais                              (VIEW)
-  old_artigos_com_campos_sel               (VIEW)
 
 executivo_federal_servidores               ----------
   cadastro                                 (EXTERNAL)
@@ -191,33 +169,19 @@ executivo_federal_servidores               ----------
 
 gabi_bot                                   ----------
   camara_tramitacao_last30minutos          (TABLE)
-  config_gabi                              (EXTERNAL)
   gabi_filters                             (EXTERNAL)
   senado_tramitacao_hoje                   (TABLE)
   senado_tramitacao_last30minutos          (VIEW)
-  teste                                    (TABLE)
-  tramitacao_hoje                          (VIEW)
 
 historicos                                 ----------
   camara_deputados_detalhes                (TABLE)
 
 paineis                                    ----------
-  apoio_ao_governo_por_deputado            (VIEW)
-  apoio_ao_governo_por_votacao             (VIEW)
   apoio_deputados_governo                  (VIEW)
   apoio_deputados_governo_consolidado      (VIEW)
-  camara_deputado_deputado                 (VIEW)
-  camara_orientacao_deputado               (TABLE)
-  camara_orientacao_deputado_old           (TABLE)
-  camara_orientacao_deputado_view          (VIEW)
-  camara_orientacao_orientacao             (VIEW)
-  camara_votacao_bancada                   (VIEW)
-  camara_votacao_deputado                  (TABLE)
   perfil_deputados                         (VIEW)
   proposicoes_displaced                    (TABLE)
   proposicoes_proposicoes                  (VIEW)
-  proposicoes_temas                        (VIEW)
-  sched_apoio_governo_por_votacao          (TABLE)
   senado_apoio_ao_governo_por_votacao      (VIEW)
 
 receita_federal                            ----------
