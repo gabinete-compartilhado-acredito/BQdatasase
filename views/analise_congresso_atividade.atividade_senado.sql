@@ -61,18 +61,33 @@ CONCAT('https://www25.senado.leg.br/web/atividade/materias/-/materia/', CAST(cod
 'Relatorias assumidas' AS tipo_atividade
 FROM `gabinete-compartilhado.congresso.senado_senador_relatorias` AS r
 WHERE r.data_designacao >= '2019-02-01'
-AND r.sigla_tipo_materia IN ('MP','MPV','PDC','PDL','PEC','PL','PLP','PLS','PLN','PDS','PDN','PLV','PLC')
+--AND r.sigla_tipo_materia IN ('MP','MPV','PDC','PDL','PEC','PL','PLP','PLS','PLN','PDS','PDN','PLV','PLC')
 AND r.tipo_relator = 'Relator'
+AND (data_destituicao IS NULL OR motivo_destituicao IN ('Deliberação da matéria', 'Matéria com tramitação encerrada'))
 
 UNION ALL
 
+/*
 -- Quarta parte: relatorias entregues
 SELECT e.NomeParlamentar, e.partido_sigla_nova, e.uf_ultimo_mandato, e.data_tramitacao_real, e.sigla_orgao, e.despacho, e.ementa, 
 CONCAT('https://www25.senado.leg.br/web/atividade/materias/-/materia/', CAST(e.id_proposicao AS STRING)) AS url,
 'Relatorias entregues' AS tipo_atividade
 FROM `gabinete-compartilhado.congresso.senado_relatorias_entregues` AS e
-WHERE sigla_tipo IN ('MP','MPV','PDC','PDL','PEC','PL','PLP','PLS','PLN','PDS','PDN','PLV','PLC')
-AND data_tramitacao_real >= '2019-02-01'
+WHERE data_tramitacao_real >= '2019-02-01'
+--AND sigla_tipo IN ('MP','MPV','PDC','PDL','PEC','PL','PLP','PLS','PLN','PDS','PDN','PLV','PLC')
+*/
+
+-- Quarta parte: relatorias entregues
+SELECT r.nome_senador, r.partido_sigla_nova, r.uf_ultimo_mandato, r.data_destituicao, r.sigla_comissao, 
+CONCAT('Relatório do(a) ', r.sigla_tipo_materia, ' ', r.numero_materia, '/', CAST(r.ano_materia AS STRING), ' entregue nesta data.') AS despacho, 
+r.ementa, 
+CONCAT('https://www25.senado.leg.br/web/atividade/materias/-/materia/', CAST(codigo_materia AS STRING)) AS url,
+'Relatorias entregues' AS tipo_atividade
+FROM `gabinete-compartilhado.congresso.senado_senador_relatorias` AS r
+WHERE r.data_designacao >= '2019-02-01'
+--AND r.sigla_tipo_materia IN ('MP','MPV','PDC','PDL','PEC','PL','PLP','PLS','PLN','PDS','PDN','PLV','PLC')
+AND r.tipo_relator = 'Relator'
+AND motivo_destituicao IN ('Deliberação da matéria', 'Matéria com tramitação encerrada')
 
 UNION ALL
 

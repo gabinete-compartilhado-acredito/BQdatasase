@@ -191,6 +191,10 @@ receita_federal                            ----------
   socios                                   (EXTERNAL)
   socios_cleaned                           (VIEW)
 
+redes_sociais                              ----------
+  twitter_legis56                          (EXTERNAL)
+  twitter_legis56_cleaned                  (VIEW)
+
 senado                                     ----------
   lider_governo_senado                     (EXTERNAL)
   proposicoes                              (EXTERNAL)
@@ -213,9 +217,9 @@ siconv                                     ----------
   data_carga                               (TABLE)
 
 testing_mess                               ----------
-  atividade_senado_desde_2015              (TABLE)
+  socios_autuados_ibama_doadores           (TABLE)
+  socios_autuados_ibama_out2019            (TABLE)
   temp_camara_tramitacao_2019              (TABLE)
-  temp_votacoes_orientadas_2019            (TABLE)
   test_consulta_cand                       (EXTERNAL)
 
 tratado_tse                                ----------
