@@ -17,5 +17,8 @@ SELECT
   replies,
   retweets,
   -- URL do tweet:
-  tweet_link
+  tweet_link,
+  -- Info da captura:
+  PARSE_DATETIME("%Y-%m-%d %H:%M:%S", d.capture_date) AS capture_date
+  
 FROM `gabinete-compartilhado.redes_sociais.twitter_legis56` AS d
