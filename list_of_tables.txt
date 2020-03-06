@@ -1,5 +1,6 @@
 analise_congresso_atividade                ----------
   atividade_senado                         (VIEW)
+  atividade_senado_from_proposicoes        (TABLE)
   camara_deputados_semihomonimos_          (TABLE)
   deputados_temas_interesse                (VIEW)
   deputados_temas_interesse_consolidado    (VIEW)
@@ -188,6 +189,7 @@ receita_federal                            ----------
   cnaes_secundarias                        (EXTERNAL)
   cnaes_secundarias_cleaned                (VIEW)
   empresas                                 (EXTERNAL)
+  empresas_cleaned                         (VIEW)
   socios                                   (EXTERNAL)
   socios_cleaned                           (VIEW)
 
@@ -211,12 +213,24 @@ senado                                     ----------
   votacoes_plenario                        (EXTERNAL)
 
 senado_processed                           ----------
+  materias_anexadas                        (VIEW)
+  materias_principais                      (VIEW)
+  materias_relacionadas                    (VIEW)
+  proposicoes_assunto_materia              (VIEW)
+  proposicoes_autores                      (VIEW)
+  proposicoes_cleaned                      (VIEW)
   senadores_expandida                      (VIEW)
 
 siconv                                     ----------
   data_carga                               (TABLE)
 
 testing_mess                               ----------
+  empresas_limit1000                       (TABLE)
+  materias_anexadas_teste                  (TABLE)
+  materias_principais_anexadas_relacionadas (TABLE)
+  materias_principais_teste                (TABLE)
+  materias_relacionadas_teste              (TABLE)
+  proposicoes_autores                      (TABLE)
   socios_autuados_ibama_doadores           (TABLE)
   socios_autuados_ibama_out2019            (TABLE)
   temp_camara_tramitacao_2019              (TABLE)

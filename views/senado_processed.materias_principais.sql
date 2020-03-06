@@ -1,0 +1,17 @@
+select  Codigo_Materia,
+pri.IdentificacaoMateria.CodigoMateria as materia_principal,
+pri.IdentificacaoMateria.DescricaoSubtipoMateria as Descricao_Subtipo_Materia_principal,
+pri.IdentificacaoMateria.SiglaSubtipoMateria as Sigla_Subtipo_Materia_principal,
+pri.IdentificacaoMateria.NumeroMateria as Numero_materia_principal,
+pri.IdentificacaoMateria.AnoMateria as Ano_materia_principal,
+Pri.IdentificacaoMateria.IndicadorTramitando as IndicadorTramitando_materia_principal , 
+Pri.IdentificacaoMateria.NomeCasaIdentificacaoMateria as NomeCasaIdentificacaoMateria_materia_principal , 
+Pri.IdentificacaoMateria.SiglaCasaIdentificacaoMateria as SiglaCasaIdentificacaoMateria_materia_principal,
+pri.Dataanexacao as Data_anexacao_materia_principal ,
+pri.DataDesanexacao as Data_Desanexacao_materia_principal, 
+
+
+
+FROM `gabinete-compartilhado.senado_processed.proposicoes_cleaned` as p, 
+
+unnest(p.Materia_Principal) as pri

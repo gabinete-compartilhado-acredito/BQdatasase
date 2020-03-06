@@ -2,6 +2,7 @@ SELECT
 'senado' AS casa,
 t2.IdentificacaoMateria.CodigoMateria AS id,
 t2.IdentificacaoMateria.SiglaSubtipoMateria AS sigla_tipo,
+t2.IdentificacaoMateria.DescricaoSubtipoMateria AS descricao_tipo,
 t2.IdentificacaoMateria.NumeroMateria  AS numero,
 t2.IdentificacaoMateria.AnoMateria AS ano,
 

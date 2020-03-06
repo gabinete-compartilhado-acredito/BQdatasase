@@ -1,0 +1,14 @@
+SELECT Codigo_Materia,  
+rel.IdentificacaoMateria.CodigoMateria as materia_relacionada,
+rel.IdentificacaoMateria.DescricaoSubtipoMateria as Descricao_Subtipo_Materia_relacionada,
+rel.IdentificacaoMateria.SiglaSubtipoMateria as Sigla_Subtipo_Materia_relacionada,
+rel.IdentificacaoMateria.NumeroMateria as Numero_materia_relacionada,
+rel.IdentificacaoMateria.AnoMateria as Ano_materia_relacionada,
+Rel.IdentificacaoMateria.IndicadorTramitando as IndicadorTramitando_materia_relacionada , 
+Rel.IdentificacaoMateria.NomeCasaIdentificacaoMateria as NomeCasaIdentificacaoMateria_materia_relacionada , 
+Rel.IdentificacaoMateria.SiglaCasaIdentificacaoMateria as SiglaCasaIdentificacaoMateria_materia_relacionada
+
+FROM `gabinete-compartilhado.senado_processed.proposicoes_cleaned` as p, 
+
+unnest(p.Materia_Relacionada) as rel
+
