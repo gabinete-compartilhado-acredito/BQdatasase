@@ -39,6 +39,8 @@ bruto_gabinete_administrativo              ----------
   parlamentares_renovabr                   (EXTERNAL)
   perfil_twitter_deputado                  (EXTERNAL)
   proposicoes_interesse                    (EXTERNAL)
+  requerimentos_classificados_leg56        (EXTERNAL)
+  requerimentos_classificados_leg56_cleaned (VIEW)
 
 bruto_tse                                  ----------
   orgaos_partidarios                       (TABLE)
@@ -213,28 +215,34 @@ senado                                     ----------
   votacoes_plenario                        (EXTERNAL)
 
 senado_processed                           ----------
+  assunto_materias                         (VIEW)
+  interesses_senadores                     (VIEW)
   materias_anexadas                        (VIEW)
   materias_principais                      (VIEW)
   materias_relacionadas                    (VIEW)
   proposicoes_assunto_materia              (VIEW)
   proposicoes_autores                      (VIEW)
   proposicoes_cleaned                      (VIEW)
+  requerimentos_assunto                    (VIEW)
   senadores_expandida                      (VIEW)
 
 siconv                                     ----------
   data_carga                               (TABLE)
 
 testing_mess                               ----------
+  MateriasxAssuntoxSenadores_test          (TABLE)
+  assunto_senadores_test                   (TABLE)
+  assunto_senadores_test_2                 (TABLE)
   empresas_limit1000                       (TABLE)
   materias_anexadas_teste                  (TABLE)
   materias_principais_anexadas_relacionadas (TABLE)
   materias_principais_teste                (TABLE)
   materias_relacionadas_teste              (TABLE)
   proposicoes_autores                      (TABLE)
+  senadores_sem_assunto                    (TABLE)
   socios_autuados_ibama_doadores           (TABLE)
   socios_autuados_ibama_out2019            (TABLE)
   temp_camara_tramitacao_2019              (TABLE)
-  test_consulta_cand                       (EXTERNAL)
 
 tratado_tse                                ----------
   consulta_cand                            (EXTERNAL)

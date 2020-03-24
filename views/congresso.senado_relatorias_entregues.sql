@@ -17,6 +17,8 @@ WHERE LOWER(t.despacho) LIKE CONCAT('%',LOWER(s.IdentificacaoParlamentar.NomePar
 -- Identifica uma entrega de relatório:
 AND
 (LOWER(despacho) LIKE '%relatór%' OR LOWER(despacho) LIKE '%relator%' OR LOWER(despacho) LIKE '%parecer%')
+AND 
+LOWER(despacho) NOT LIKE '%retificado%' AND LOWER(despacho) NOT LIKE '%reformulado%' 
 AND
 (LOWER(despacho) LIKE '%apresent%' OR LOWER(despacho) LIKE '%receb%' OR LOWER(despacho) LIKE '%devolv%')
 AND
