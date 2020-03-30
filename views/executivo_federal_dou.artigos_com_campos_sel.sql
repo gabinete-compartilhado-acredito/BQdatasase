@@ -54,8 +54,9 @@ SELECT
   (SELECT value FROM UNNEST(data) WHERE key = 'assina') AS assina,
   (SELECT value FROM UNNEST(data) WHERE key = 'cargo') AS cargo,
   -- Id. da publicação: 
-  SAFE_CAST((SELECT SPLIT(SPLIT(value,'|')[OFFSET(0)],':')[OFFSET(1)] FROM UNNEST(data) WHERE key = 'secao-dou') AS INT64) AS secao,
+  (SELECT CAST((REGEXP_EXTRACT(value, '[0-9]')) AS INT64) FROM UNNEST(data) WHERE key = 'secao-dou') AS secao,
   (SELECT value FROM UNNEST(data) WHERE key = 'edicao-dou-data') AS edicao,
+  (SELECT IF(REGEXP_CONTAINS(LOWER(value), 'extra'), 'Extra', 'Ordinária') FROM UNNEST(data) WHERE key = 'secao-dou') AS tipo_edicao,
   (SELECT value FROM UNNEST(data) WHERE key = 'secao-dou-data') AS pagina,
   (SELECT parse_date('%d/%m/%Y', value) FROM UNNEST(data) WHERE key = 'publicado-dou-data') AS data_pub,
   -- Links e info da captura:
