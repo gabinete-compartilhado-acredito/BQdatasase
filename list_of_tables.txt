@@ -160,15 +160,43 @@ datastudio                                 ----------
   perfil_deputados_                        (TABLE)
 
 executivo_federal_dou                      ----------
+  artigos_classificados                    (TABLE)
+  artigos_cleaned_da_semana                (TABLE)
+  artigos_com_campos_cleaned               (VIEW)
   artigos_com_campos_sel                   (VIEW)
+  artigos_ranqueados_auto                  (EXTERNAL)
+  artigos_ranqueados_cleaned               (VIEW)
+  artigos_reclassificados                  (EXTERNAL)
+  brasil_real_oficial                      (TABLE)
+  brasil_real_oficial_cleaned              (VIEW)
   bruto_dou                                (EXTERNAL)
   keys_2019_05_16                          (TABLE)
   keys_2019_10_25                          (TABLE)
+  keys_2020_07_30                          (TABLE)
   keys_atuais                              (VIEW)
+  materias_campos_cleaned                  (VIEW)
+  materias_campos_selecionados             (VIEW)
+  nomeacoes_exoneracoes                    (VIEW)
+  partitioned_bruto_dou                    (EXTERNAL)
+  sheets_classificacao_cleaned             (VIEW)
+  sheets_classificacao_secao_1             (EXTERNAL)
+  sheets_classificacao_secao_2             (EXTERNAL)
+  sheets_classificacao_secao_3             (EXTERNAL)
+  sheets_classificacao_secao_e             (EXTERNAL)
+
+executivo_federal_outros                   ----------
+  auxilio_emergencial                      (EXTERNAL)
 
 executivo_federal_servidores               ----------
-  cadastro                                 (EXTERNAL)
-  sample_cadastro                          (TABLE)
+  afastamentos_civis                       (EXTERNAL)
+  cadastro_civis                           (EXTERNAL)
+  cadastro_militares                       (EXTERNAL)
+  jetons_civis                             (EXTERNAL)
+  jetons_militares                         (EXTERNAL)
+  observacoes_civis                        (EXTERNAL)
+  observacoes_militares                    (EXTERNAL)
+  remuneracao_civis                        (EXTERNAL)
+  remuneracao_militares                    (EXTERNAL)
 
 gabi_bot                                   ----------
   camara_tramitacao_last30minutos          (TABLE)
@@ -196,11 +224,20 @@ receita_federal                            ----------
   socios_cleaned                           (VIEW)
 
 redes_sociais                              ----------
+  deputados_tweets                         (EXTERNAL)
+  deputados_twitter_tweet_retweeted        (VIEW)
+  deputados_twitter_tweets                 (VIEW)
+  deputados_twitter_users                  (VIEW)
+  deputados_twitter_users_metrics          (VIEW)
+  perfil_twitter_deputados                 (EXTERNAL)
+  perfil_twitter_senadores                 (EXTERNAL)
+  senadores_tweets                         (EXTERNAL)
   twitter_legis56                          (EXTERNAL)
   twitter_legis56_cleaned                  (VIEW)
 
 senado                                     ----------
   lider_governo_senado                     (EXTERNAL)
+  pessoas_comissionados                    (EXTERNAL)
   proposicoes                              (EXTERNAL)
   proposicoes_lista                        (EXTERNAL)
   proposicoes_tramitadas_periodo           (EXTERNAL)
@@ -230,19 +267,22 @@ siconv                                     ----------
   data_carga                               (TABLE)
 
 testing_mess                               ----------
-  MateriasxAssuntoxSenadores_test          (TABLE)
-  assunto_senadores_test                   (TABLE)
-  assunto_senadores_test_2                 (TABLE)
-  empresas_limit1000                       (TABLE)
-  materias_anexadas_teste                  (TABLE)
-  materias_principais_anexadas_relacionadas (TABLE)
-  materias_principais_teste                (TABLE)
-  materias_relacionadas_teste              (TABLE)
-  proposicoes_autores                      (TABLE)
-  senadores_sem_assunto                    (TABLE)
-  socios_autuados_ibama_doadores           (TABLE)
-  socios_autuados_ibama_out2019            (TABLE)
-  temp_camara_tramitacao_2019              (TABLE)
+  201901_Remuneracao_cleand                (TABLE)
+  artigos_classificados_bkp_2020_06_02     (TABLE)
+  artigos_dou_cleaned_ate_2020_06_02       (TABLE)
+  assessores_camara_com_auxilio_emergencial (TABLE)
+  cadastro_civis                           (EXTERNAL)
+  cadastro_militares                       (EXTERNAL)
+  cadastro_teste                           (TABLE)
+  jetons_advocativios                      (EXTERNAL)
+  jetons_cleaned                           (EXTERNAL)
+  nomeacoes_exoneracoes_2020_07_29         (TABLE)
+  oberservacoes                            (EXTERNAL)
+  remuneracao                              (EXTERNAL)
+  temp_pagamentos_multiplos_auxilio        (TABLE)
+  test_partitioned_table_cadastro_militares (EXTERNAL)
+  teste                                    (TABLE)
+  teste_servidores                         (EXTERNAL)
 
 tratado_tse                                ----------
   consulta_cand                            (EXTERNAL)
@@ -254,6 +294,7 @@ tratado_tse                                ----------
 tratado_tse_processed                      ----------
   consulta_cand_2018_cleaned               (VIEW)
   doador_originario_2018_cleaned           (VIEW)
+  doadores_pessoa_fisica_2018              (VIEW)
   receitas_candidatos_2018_cleaned         (VIEW)
   receitas_completas_2018                  (VIEW)
 

@@ -1,26 +1,25 @@
 /***
      Tabela com campos selecionados do DOU em colunas separadas. Além disso, fazemos uma limpeza:
      - A seção foi parseada;
-     - As datas de publicação e de captura foram transformadas em DATETIME;
+     - A data de publicação foi transformadas em DATETIME;
      E criamos os campos:
-     - alltext, que agrupa diversos campos num só;
-     - resumo, que extrai o começo dos parágrafos.
+     - alltext, que agrupa diversos campos num só.
      
      NOTA: No caso de erro "Scalar subquery produced more than one element", isso indica que existem artigos duplicados, talvez por erro 
      na captura (e.g. com artigos com "//" no nome). Nesse caso, descomente as linhas marcadas a baixo para achar o artigo culpado e 
      comente todas as subqueries.
  ***/
 
--- Agrupa base bruta do DOU nos artigos:
+-- Agrupa base bruta do DOU nos artigos, mantendo as partições disponíveis:
 WITH grouped AS (
-  SELECT url,
+  SELECT part_data_pub, part_secao, url,
   ARRAY_AGG(STRUCT(key AS key, value AS value)) as data,
   ANY_VALUE(capture_date) AS capture_date,
   ANY_VALUE(url_certificado) as url_certificado,
   COUNT(DISTINCT key) AS n_keys_distinct,
   COUNT(key) AS n_keys
-  FROM `gabinete-compartilhado.executivo_federal_dou.bruto_dou` 
-  GROUP BY url
+  FROM `gabinete-compartilhado.executivo_federal_dou.partitioned_bruto_dou`  
+  GROUP BY part_data_pub, part_secao, url
 )
 
 SELECT
@@ -64,7 +63,10 @@ SELECT
   -- Links e info da captura:
   url_certificado,
   url,
-  PARSE_DATETIME('%Y-%m-%d %H:%M:%S', capture_date) AS capture_date 
+  capture_date,
+  -- Colunas que definem uma partição:
+  part_data_pub,
+  part_secao
   --, n_keys, n_keys_distinct,           -- FOR DEBUGGING IN CASE OF ERROR "Scalar subquery produced more than one element" 
 FROM grouped
 --WHERE n_keys != n_keys_distinct        -- FOR DEBUGGING IN CASE OF ERROR "Scalar subquery produced more than one element" 

@@ -64,4 +64,8 @@ url,         -- URL para o artigo em HTML
 url_certificado, -- URL para o artigo certificado, acho que em PDF
 -- Info da captura:
 capture_date     -- Data de captura do artigo
-FROM `gabinete-compartilhado.executivo_federal_dou.artigos_com_campos_sel`
+-- Colunas de partição dos dados:
+part_data_pub,
+part_secao
+
+FROM `gabinete-compartilhado.executivo_federal_dou.materias_campos_selecionados`

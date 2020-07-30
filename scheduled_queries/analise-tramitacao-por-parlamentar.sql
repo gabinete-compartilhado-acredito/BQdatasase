@@ -27,7 +27,7 @@ w2.*
 FROM (
 SELECT t1.*, 
 t2.id as id_parlamentar, t2.nome_parlamentar, t2.sigla_partido, t2.sigla_uf
-FROM (SELECT * FROM `gabinete-compartilhado.congresso.tramitacao_` WHERE data_hora BETWEEN DATETIME '2019-02-01' AND DATETIME '2019-12-31') t1
+FROM (SELECT * FROM `gabinete-compartilhado.congresso.tramitacao_` WHERE data_hora BETWEEN DATETIME '2019-02-01' AND DATETIME '2022-12-31') t1
 JOIN (SELECT * FROM `gabinete-compartilhado.congresso.camara_deputado_` WHERE ultima_legislatura = 56 ORDER BY nome_parlamentar)  t2
 ON accent2latin(lower(t1.despacho)) LIKE CONCAT('%', accent2latin(lower(t2.nome_parlamentar)), '%')) w1
 JOIN `gabinete-compartilhado.congresso.support_date_legislaturas` w2
