@@ -9,6 +9,8 @@ WITH t_ultimo_mandato AS (
 
 -- Select original columns:
 SELECT s.*, 
+-- Última legislatura do mandato:
+legislatura,
 -- Add a column with the last mandate's UF:
 m.UfParlamentar AS uf_ultimo_mandato,
 -- Add party's new name:

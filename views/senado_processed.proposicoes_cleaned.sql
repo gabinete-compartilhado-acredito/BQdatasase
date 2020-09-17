@@ -8,11 +8,11 @@
 
 SELECT  
   --Id da proposição:
-  IdentificacaoMateria.CodigoMateria AS Codigo_Materia,
+  CAST(IdentificacaoMateria.CodigoMateria AS INT64) AS Codigo_Materia,
   IdentificacaoMateria.DescricaoIdentificacaoMateria AS Descricao_Identificacao_Materia,
   IdentificacaoMateria.DescricaoObjetivoProcesso AS Descricao_Objetivo_Processo,
   IdentificacaoMateria.DescricaoSubtipoMateria AS Descricao_Subtipo_Materia,
-  IdentificacaoMateria.AnoMateria AS Ano_Materia,
+  CAST(IdentificacaoMateria.AnoMateria AS INT64) AS Ano_Materia,
   IdentificacaoMateria.IndicadorTramitando AS Indicador_Tramitando,
   IdentificacaoMateria.NomeCasaIdentificacaoMateria AS Nome_Casa_Identificacao_Materia,
   IdentificacaoMateria.NumeroMateria AS Numero_Materia,
@@ -21,7 +21,7 @@ SELECT
   IdentificacaoMateria.SiglaSubtipoMateria AS Sigla_Subtipo_Materia,
   
   -- Assunto da proposição:
-  Assunto.AssuntoEspecifico.Codigo AS Assunto_Especifico_Codigo,
+  CAST(Assunto.AssuntoEspecifico.Codigo AS INT64) AS Assunto_Especifico_Codigo,
   Assunto.AssuntoEspecifico.Descricao AS Assunto_Especifico_Descricao,
   Assunto.AssuntoGeral.Codigo AS Assunto_Geral_Codigo,
   Assunto.AssuntoGeral.Descricao AS Assunto_Geral_Descricao,
@@ -45,14 +45,14 @@ SELECT
   
   -- Info da matéria:
   TRIM(DadosBasicosMateria.ApelidoMateria) AS Apelido_Materia, 
-  DadosBasicosMateria.DataApresentacao AS Data_Apresentacao, 
-  DadosBasicosMateria.DataAssinatura AS Data_Assinatura,
-  DadosBasicosMateria.DataLeitura AS Data_Leitura, 
+  CAST(DadosBasicosMateria.DataApresentacao AS DATE) AS Data_Apresentacao, 
+  CAST(DadosBasicosMateria.DataAssinatura AS DATE) AS Data_Assinatura,
+  CAST(DadosBasicosMateria.DataLeitura AS DATE) AS Data_Leitura, 
   TRIM(DadosBasicosMateria.EmentaMateria) AS Ementa_Materia, 
   TRIM(DadosBasicosMateria.ExplicacaoEmentaMateria) AS Explicacao_Ementa_Materia, 
   TRIM(DadosBasicosMateria.IndexacaoMateria) AS Indexacao_Materia,
   DadosBasicosMateria.IndicadorComplementar AS Indicador_Complementar,
-  DadosBasicosMateria.NaturezaMateria.CodigoNatureza AS Codigo_Natureza,
+  CAST(DadosBasicosMateria.NaturezaMateria.CodigoNatureza AS INT64) AS Codigo_Natureza,
   TRIM(DadosBasicosMateria.NaturezaMateria.DescricaoNatureza) AS Descricao_Natureza,
   DadosBasicosMateria.NaturezaMateria.NomeNatureza AS Nome_Natureza,
   DadosBasicosMateria.SiglaCasaLeitura AS Sigla_Casa_Leitura,
@@ -63,14 +63,14 @@ SELECT
   -- Dados no caso de medida provisória (MPV):
   DadosBasicosMateria.IdentificacaoComissaoMpv.SiglaCasaComissao AS mpv_Sigla_Casa,
   TRIM(DadosBasicosMateria.IdentificacaoComissaoMpv.NomeCasaComissao) AS mpv_Nome_Casa,
-  DadosBasicosMateria.IdentificacaoComissaoMpv.CodigoComissao AS mpv_Codigo_Comissao, 
+  CAST(DadosBasicosMateria.IdentificacaoComissaoMpv.CodigoComissao AS INT64) AS mpv_Codigo_Comissao, 
   DadosBasicosMateria.IdentificacaoComissaoMpv.SiglaComissao AS mpv_Sigla_Comissao,
   TRIM(DadosBasicosMateria.IdentificacaoComissaoMpv.NomeComissao) AS mpv_Nome_Comissao,
-  DadosBasicosMateria.NumeroRepublicacaoMpv AS mpv_Numero_Republicacao,
+  CAST(DadosBasicosMateria.NumeroRepublicacaoMpv  AS INT64) AS mpv_Numero_Republicacao,
 
   -- Matérias associadas:
   MateriasAnexadas.MateriaAnexada AS Materia_Anexada,
-  MateriasAnexadas.MateriaPrincipal AS Materia_Principal,
+  --MateriasAnexadas.MateriaPrincipal AS Materia_Principal,
   MateriasRelacionadas.MateriaRelacionada AS Materia_Relacionada,
   
   -- Autuações (tramitação):
@@ -82,11 +82,11 @@ SELECT
   OutrosNumerosDaMateria.OutroNumeroDaMateria AS Outro_Numero_Materia,
   
   -- Norma gerada: (organizar a ordem)
-  NormaGerada.IdentificacaoNorma.CodigoNorma AS Codigo_norma,
+  CAST(NormaGerada.IdentificacaoNorma.CodigoNorma AS INT64) AS Codigo_norma,
   NormaGerada.IdentificacaoNorma.SiglaTipoNorma AS Sigla_Tipo_Norma,
   NormaGerada.IdentificacaoNorma.DescricaoTipoNorma AS Desc_Tipo_Norma,
-  NormaGerada.IdentificacaoNorma.NumeroNorma AS Numero_Norma,
-  NormaGerada.IdentificacaoNorma.AnoNorma AS Ano_Norma,
+  CAST(NormaGerada.IdentificacaoNorma.NumeroNorma AS INT64) AS Numero_Norma,
+  CAST(NormaGerada.IdentificacaoNorma.AnoNorma  AS INT64) AS Ano_Norma,
   NormaGerada.IdentificacaoNorma.DataNorma AS Data_norma,
   NormaGerada.IdentificacaoNorma.SiglaVeiculoPublicacao AS Sigla_Veiculo_Publicacao_Norma,
   NormaGerada.IdentificacaoNorma.DescricaoVeiculoPublicacao AS Desc_Veiculo_Publicacao_Norma,
@@ -97,6 +97,7 @@ SELECT
   -- Info da captura e referências:
   UrlGlossario AS Url_Glossario,
   api_url AS Api_Url,
+  --capture_date
   PARSE_DATETIME('%Y-%m-%d %H:%M:%S', capture_date) AS capture_date,
 
 FROM `gabinete-compartilhado.senado.proposicoes`

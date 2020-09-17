@@ -63,7 +63,7 @@ data_pub,    -- Data de publicação
 url,         -- URL para o artigo em HTML
 url_certificado, -- URL para o artigo certificado, acho que em PDF
 -- Info da captura:
-capture_date     -- Data de captura do artigo
+capture_date,     -- Data de captura do artigo
 -- Colunas de partição dos dados:
 part_data_pub,
 part_secao

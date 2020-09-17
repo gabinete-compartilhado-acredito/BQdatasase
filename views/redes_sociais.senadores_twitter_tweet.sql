@@ -1,0 +1,2 @@
+SELECT parse_datetime( "%Y-%m-%d %H:%M:%S", capture_date) as capture_date, parse_datetime("%a %b %d %H:%M:%S +0000 %Y", created_at) as tweet_created_at, favorite_count, full_text, id_str as tweet_id,  place.full_name as post_location, retweet_count, retweeted, user.created_at as user_created_at, user.favourites_count, user.followers_count, user.friends_count, user.id_str as user_id, user.location as account_location, user.name, user.screen_name, user.statuses_count FROM `gabinete-compartilhado.redes_sociais.senadores_tweets`
+

@@ -25,16 +25,18 @@ WITH exonomeia AS (
     -- Detecta nomeações pelo termo "Nomear" acompanhado de letras maiúsculas (que esperamos ser nomes):
     REGEXP_EXTRACT_ALL(clean_text, r"([Nn](?:omear|OMEAR).{0,100}?[A-ZÇÃÁÂÉÊÍÓÔÚ'\- ]{10,})") AS nomeacao_texto, -- Extrai o texto da nomeação.
     REGEXP_EXTRACT_ALL(clean_text, r"[Nn](?:omear|OMEAR).{0,100}?([A-ZÇÃÁÂÉÊÍÓÔÚ'\- ]{10,})") AS nomeacao_nome,  -- Extrai apenas o nome do nomeado.
-    
+        
     -- Detecta exonerações pelo termo "Exonerar" (1 regex) ou "Exonerado(a)" (2o regex) acompanhado de letras maiúsculas (que esperamos ser nomes):
     ARRAY_CONCAT(REGEXP_EXTRACT_ALL(clean_text, r"([Ee](?:xonerar|XONERAR).{0,100}?[A-ZÇÃÁÂÉÊÍÓÔÚ'\- ]{10,})"),
                  REGEXP_EXTRACT_ALL(clean_text, r"([Ee](?:xonerad[ao]|XONERAD[AO])[^\.]{0,50}?[A-ZÇÃÁÂÉÊÍÓÔÚ'\- ]{10,})")) AS exoneracao_texto, -- Extrai o texto da exoneração.
     ARRAY_CONCAT(REGEXP_EXTRACT_ALL(clean_text, r"[Ee](?:xonerar|XONERAR).{0,100}?([A-ZÇÃÁÂÉÊÍÓÔÚ'\- ]{10,})"),
                  REGEXP_EXTRACT_ALL(clean_text, r"[Ee](?:xonerad[ao]|XONERAD[AO])[^\.]{0,50}?([A-ZÇÃÁÂÉÊÍÓÔÚ'\- ]{10,})")) AS exoneracao_nome, -- Extrai o nome do exonerado.
 
-    clean_text, assina, identifica, url
+    clean_text, assina, identifica, url,
+    -- Colunas de partição:
+    part_data_pub, part_secao
 
-  FROM `gabinete-compartilhado.executivo_federal_dou.artigos_com_campos_cleaned` 
+  FROM `gabinete-compartilhado.executivo_federal_dou.materias_campos_cleaned`  
 
   WHERE secao = 2 AND
   -- Palavras-chave que indicam exonerações/nomeações:
@@ -48,7 +50,8 @@ WITH exonomeia AS (
 SELECT 
   orgao, data_pub, 'Nomeação' AS ato,
   TRIM(nomeacao_nome) AS nome, nomeacao_texto AS texto,
-  clean_text, assina, identifica, url 
+  clean_text, assina, identifica, url,
+  part_data_pub, part_secao
 
 FROM exonomeia, 
 UNNEST(exonomeia.nomeacao_texto) AS nomeacao_texto WITH OFFSET nomeacao_texto_idx,
@@ -61,7 +64,8 @@ UNION ALL
 SELECT 
   orgao, data_pub, 'Exoneração' AS ato,
   TRIM(exoneracao_nome) AS nome, exoneracao_texto AS texto,
-  clean_text, assina, identifica, url 
+  clean_text, assina, identifica, url,
+  part_data_pub, part_secao 
 
 FROM exonomeia, 
 UNNEST(exonomeia.exoneracao_texto) AS exoneracao_texto WITH OFFSET exoneracao_texto_idx,
@@ -74,7 +78,8 @@ UNION ALL
 SELECT 
   orgao, data_pub, 'Nomeação' AS ato,
   NULL AS nome, NULL AS texto,
-  clean_text, assina, identifica, url 
+  clean_text, assina, identifica, url,
+  part_data_pub, part_secao 
 
 FROM exonomeia
 WHERE ARRAY_LENGTH(nomeacao_texto) = 0 AND ARRAY_LENGTH(exoneracao_texto) = 0
@@ -86,7 +91,8 @@ UNION ALL
 SELECT 
   orgao, data_pub, 'Exoneração' AS ato,
   NULL AS nome, NULL AS texto,
-  clean_text, assina, identifica, url 
+  clean_text, assina, identifica, url,
+  part_data_pub, part_secao 
 
 FROM exonomeia
 WHERE ARRAY_LENGTH(nomeacao_texto) = 0 AND ARRAY_LENGTH(exoneracao_texto) = 0

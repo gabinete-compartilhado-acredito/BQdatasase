@@ -17,9 +17,10 @@ WITH id_votacao AS (
 SELECT id_votacao.num_votacao,
   v.SessaoPlenaria.DataSessao, v.DescricaoVotacao, v.DescricaoResultado, v.IndicadorVotacaoSecreta as votacaoSecreta,
   -- Dados da matéria:
+  v.IdentificacaoMateria.CodigoMateria, 
   v.IdentificacaoMateria.SiglaSubtipoMateria as tipoMateria, v.IdentificacaoMateria.NumeroMateria, v.IdentificacaoMateria.AnoMateria,
-  CAST(ARRAY_REVERSE(SPLIT(v.api_url, '/'))[ORDINAL(2)] AS INT64) AS id_senador, 
   -- Dados do senador:
+  CAST(ARRAY_REVERSE(SPLIT(v.api_url, '/'))[ORDINAL(2)] AS INT64) AS id_senador, 
   s.IdentificacaoParlamentar.NomeParlamentar as nome_senador, p.sigla_nova as partido_senador, 
   s.IdentificacaoParlamentar.UfParlamentar as uf_senador, 
 

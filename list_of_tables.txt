@@ -41,6 +41,11 @@ bruto_gabinete_administrativo              ----------
   proposicoes_interesse                    (EXTERNAL)
   requerimentos_classificados_leg56        (EXTERNAL)
   requerimentos_classificados_leg56_cleaned (VIEW)
+  senado_cargo_remuneracao                 (VIEW)
+  senado_cargo_remuneracao_vigencia        (VIEW)
+  senado_comissionados_nome_cargos         (EXTERNAL)
+  senado_comissionados_remuneracao         (EXTERNAL)
+  servidores_traducao_nomes_senadores      (EXTERNAL)
 
 bruto_tse                                  ----------
   orgaos_partidarios                       (TABLE)
@@ -120,6 +125,10 @@ camara_v2_processed                        ----------
   tramitacoes_cleaned                      (VIEW)
   tramitacoes_ultima                       (VIEW)
 
+checkup_de_dados                           ----------
+  senador_servidores_remuneracao_duplicates (VIEW)
+  senador_servidores_remuneracao_join      (VIEW)
+
 congresso                                  ----------
   camara_deputado                          (VIEW)
   camara_deputado_                         (TABLE)
@@ -161,9 +170,6 @@ datastudio                                 ----------
 
 executivo_federal_dou                      ----------
   artigos_classificados                    (TABLE)
-  artigos_cleaned_da_semana                (TABLE)
-  artigos_com_campos_cleaned               (VIEW)
-  artigos_com_campos_sel                   (VIEW)
   artigos_ranqueados_auto                  (EXTERNAL)
   artigos_ranqueados_cleaned               (VIEW)
   artigos_reclassificados                  (EXTERNAL)
@@ -224,7 +230,10 @@ receita_federal                            ----------
   socios_cleaned                           (VIEW)
 
 redes_sociais                              ----------
+  deputados_info                           (VIEW)
   deputados_tweets                         (EXTERNAL)
+  deputados_tweets_cleaned                 (VIEW)
+  deputados_tweets_table_cleaned           (TABLE)
   deputados_twitter_tweet_retweeted        (VIEW)
   deputados_twitter_tweets                 (VIEW)
   deputados_twitter_users                  (VIEW)
@@ -232,12 +241,21 @@ redes_sociais                              ----------
   perfil_twitter_deputados                 (EXTERNAL)
   perfil_twitter_senadores                 (EXTERNAL)
   senadores_tweets                         (EXTERNAL)
+  senadores_tweets_hashtags                (VIEW)
+  senadores_tweets_user_mentions           (VIEW)
+  senadores_twitter_perfil                 (TABLE)
+  senadores_twitter_tweet                  (VIEW)
+  senadores_twitter_tweet_retweeted        (VIEW)
+  senadores_twitter_tweets                 (VIEW)
+  senadores_twitter_users                  (VIEW)
+  senadores_twitter_users_metrics          (VIEW)
   twitter_legis56                          (EXTERNAL)
   twitter_legis56_cleaned                  (VIEW)
 
 senado                                     ----------
   lider_governo_senado                     (EXTERNAL)
   pessoas_comissionados                    (EXTERNAL)
+  pessoas_servidores                       (EXTERNAL)
   proposicoes                              (EXTERNAL)
   proposicoes_lista                        (EXTERNAL)
   proposicoes_tramitadas_periodo           (EXTERNAL)
@@ -257,32 +275,21 @@ senado_processed                           ----------
   materias_anexadas                        (VIEW)
   materias_principais                      (VIEW)
   materias_relacionadas                    (VIEW)
+  pessoas_comissionados_cleaned            (VIEW)
+  pessoas_servidores_cleaned               (VIEW)
   proposicoes_assunto_materia              (VIEW)
   proposicoes_autores                      (VIEW)
   proposicoes_cleaned                      (VIEW)
   requerimentos_assunto                    (VIEW)
+  senador_comissionados_remuneracao        (VIEW)
+  senador_servidores_remuneracao           (VIEW)
   senadores_expandida                      (VIEW)
 
 siconv                                     ----------
   data_carga                               (TABLE)
 
 testing_mess                               ----------
-  201901_Remuneracao_cleand                (TABLE)
-  artigos_classificados_bkp_2020_06_02     (TABLE)
-  artigos_dou_cleaned_ate_2020_06_02       (TABLE)
-  assessores_camara_com_auxilio_emergencial (TABLE)
-  cadastro_civis                           (EXTERNAL)
-  cadastro_militares                       (EXTERNAL)
-  cadastro_teste                           (TABLE)
-  jetons_advocativios                      (EXTERNAL)
-  jetons_cleaned                           (EXTERNAL)
   nomeacoes_exoneracoes_2020_07_29         (TABLE)
-  oberservacoes                            (EXTERNAL)
-  remuneracao                              (EXTERNAL)
-  temp_pagamentos_multiplos_auxilio        (TABLE)
-  test_partitioned_table_cadastro_militares (EXTERNAL)
-  teste                                    (TABLE)
-  teste_servidores                         (EXTERNAL)
 
 tratado_tse                                ----------
   consulta_cand                            (EXTERNAL)
@@ -297,4 +304,9 @@ tratado_tse_processed                      ----------
   doadores_pessoa_fisica_2018              (VIEW)
   receitas_candidatos_2018_cleaned         (VIEW)
   receitas_completas_2018                  (VIEW)
+
+views_publicos                             ----------
+  br_legislativo_camara_deputados          (VIEW)
+  br_legislativo_camara_proposicoes        (VIEW)
+  diario_oficial_da_uniao                  (VIEW)
 
