@@ -1,1 +1,0 @@
-SELECT * FROM `gabinete-compartilhado.executivo_federal_dou.materias_campos_cleaned`
