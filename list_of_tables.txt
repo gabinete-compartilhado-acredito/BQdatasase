@@ -16,6 +16,7 @@ analise_congresso_poder                    ----------
 
 analise_congresso_votacoes                 ----------
   alinhamento_alessandro_senadores         (VIEW)
+  alinhamento_por_temas_camara             (VIEW)
   alinhamento_rigoni_deputados             (VIEW)
   alinhamento_tabata_deputados             (VIEW)
   camara_alinhamentos                      (VIEW)
@@ -23,6 +24,10 @@ analise_congresso_votacoes                 ----------
   camara_orientacao_deputado               (VIEW)
   camara_orientacao_orientacao             (VIEW)
   senado_senador_senador                   (VIEW)
+  votacoes_camara_macro-temas              (VIEW)
+  votacoes_v2_deputado_deputado            (VIEW)
+  votacoes_v2_deputado_deputado_por_tema   (VIEW)
+  votacoes_v2_deputado_deputado_presencial (VIEW)
 
 analise_indicacoes_federal                 ----------
   dou_bruto                                (TABLE)
@@ -30,6 +35,7 @@ analise_indicacoes_federal                 ----------
 
 bruto_gabinete_administrativo              ----------
   camara_bancadas_publica_2016             (EXTERNAL)
+  camara_proposicoes_temas_macrotemas      (EXTERNAL)
   contabilidade_assinaturas                (VIEW)
   contabilidade_assinaturas_formulario     (EXTERNAL)
   contabilidade_assinaturas_manual         (EXTERNAL)
@@ -47,6 +53,7 @@ bruto_gabinete_administrativo              ----------
   senado_comissionados_nome_cargos         (EXTERNAL)
   senado_comissionados_remuneracao         (EXTERNAL)
   servidores_traducao_nomes_senadores      (EXTERNAL)
+  temas_proposicoes_camara_agg_macro-temas (TABLE)
 
 bruto_tse                                  ----------
   orgaos_partidarios                       (TABLE)
@@ -65,6 +72,7 @@ camara_v1                                  ----------
 camara_v1_processed                        ----------
   aguardo_designacao_relator_ce_cleaned    (VIEW)
   deputados_blocos_cleaned                 (VIEW)
+  deputados_blocos_composicao_por_dia      (VIEW)
   deputados_comissionados_cleaned          (VIEW)
   deputados_comissionados_combined         (VIEW)
   deputados_detalhes_cargos_cleaned        (VIEW)
@@ -106,11 +114,13 @@ camara_v2                                  ----------
   tramitacoes                              (EXTERNAL)
   votacoes                                 (EXTERNAL)
   votacoes_detalhes                        (EXTERNAL)
+  votacoes_orientacoes                     (EXTERNAL)
   votacoes_votos                           (EXTERNAL)
 
 camara_v2_processed                        ----------
   deputados_detalhes_cleaned               (VIEW)
   deputados_discursos_cleaned              (VIEW)
+  deputados_eventos_cleaned                (VIEW)
   deputados_orgaos_cleaned                 (VIEW)
   eventos_cleaned                          (VIEW)
   eventos_completa                         (VIEW)
@@ -128,10 +138,19 @@ camara_v2_processed                        ----------
   proposicoes_tramitacoes                  (VIEW)
   tramitacoes_cleaned                      (VIEW)
   tramitacoes_ultima                       (VIEW)
+  votacoes_cleaned                         (VIEW)
+  votacoes_efeitos_registrados             (VIEW)
+  votacoes_objetos_possiveis               (VIEW)
+  votacoes_orientacoes_blocos              (VIEW)
+  votacoes_orientacoes_cleaned             (VIEW)
+  votacoes_proposicoes_afetadas            (VIEW)
+  votacoes_votos_cleaned                   (VIEW)
+  votacoes_votos_orientados                (VIEW)
 
 checkup_de_dados                           ----------
   senador_servidores_remuneracao_duplicates (VIEW)
   senador_servidores_remuneracao_join      (VIEW)
+  temas_sem_macrotemas_definidos           (VIEW)
 
 congresso                                  ----------
   camara_deputado                          (VIEW)
@@ -203,6 +222,7 @@ executivo_federal_servidores               ----------
   cadastro_militares                       (EXTERNAL)
   jetons_civis                             (EXTERNAL)
   jetons_militares                         (EXTERNAL)
+  militares_inativos_RIC                   (EXTERNAL)
   observacoes_civis                        (EXTERNAL)
   observacoes_militares                    (EXTERNAL)
   remuneracao_civis                        (EXTERNAL)
@@ -226,6 +246,7 @@ paineis                                    ----------
   senado_apoio_ao_governo_por_votacao      (VIEW)
 
 receita_federal                            ----------
+  cnaes_denominacoes                       (EXTERNAL)
   cnaes_secundarias                        (EXTERNAL)
   cnaes_secundarias_cleaned                (VIEW)
   empresas                                 (EXTERNAL)
@@ -238,6 +259,7 @@ redes_sociais                              ----------
   deputados_tweets                         (EXTERNAL)
   deputados_tweets_cleaned                 (VIEW)
   deputados_twitter_tweets                 (VIEW)
+  deputados_wikipedia                      (EXTERNAL)
   perfil_twitter_deputados                 (EXTERNAL)
   perfil_twitter_senadores                 (EXTERNAL)
   projeto_twitter                          (TABLE)
@@ -246,6 +268,7 @@ redes_sociais                              ----------
   senadores_tweets_cleaned                 (VIEW)
   senadores_twitter_perfil                 (TABLE)
   senadores_twitter_tweet                  (VIEW)
+  senadores_wikipedia                      (EXTERNAL)
   twitter_legis56                          (EXTERNAL)
   twitter_legis56_cleaned                  (VIEW)
 
@@ -280,17 +303,14 @@ senado_processed                           ----------
   requerimentos_assunto                    (VIEW)
   senador_comissionados_remuneracao        (VIEW)
   senador_servidores_remuneracao           (VIEW)
+  senador_votacoes_cleaned                 (VIEW)
   senadores_expandida                      (VIEW)
 
 siconv                                     ----------
   data_carga                               (TABLE)
 
 testing_mess                               ----------
-  camara_tramitacoes_test                  (EXTERNAL)
-  candidatos_2012_com_features             (EXTERNAL)
-  candidatos_2016_com_features             (EXTERNAL)
-  candidatos_2020_com_features             (EXTERNAL)
-  dou_2020_10_15                           (TABLE)
+  ocupantes_cargos_altos_mec_2021_01       (EXTERNAL)
 
 tratado_tse                                ----------
   consulta_cand                            (EXTERNAL)
@@ -310,14 +330,18 @@ tratado_tse_processed                      ----------
   receitas_completas_2018                  (VIEW)
 
 views_publicos                             ----------
+  br_imprensa_nacional_dou_3               (TABLE)
+  br_imprensa_oficial_dou_1                (TABLE)
+  br_imprensa_oficial_dou_2                (TABLE)
   br_legislativo_camara_deputados          (TABLE)
   br_legislativo_camara_discursos          (TABLE)
   br_legislativo_camara_eventos            (TABLE)
   br_legislativo_camara_orgaos             (TABLE)
   br_legislativo_senado_senadores          (TABLE)
   br_legislativo_senado_votacoes_plenario  (TABLE)
-  dou_bruto                                (TABLE)
+  dou_bruto                                (EXTERNAL)
   dou_campos_selecionados                  (VIEW)
   dou_campos_selecionados_limpos           (VIEW)
   servidores_executivo_federal_civis_cadastro (EXTERNAL)
+  servidores_federais_militares_cadastro   (EXTERNAL)
 
