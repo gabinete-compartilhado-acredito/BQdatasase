@@ -1,0 +1,178 @@
+{
+  "csvOptions": {
+    "allowJaggedRows": false,
+    "allowQuotedNewlines": false,
+    "encoding": "UTF-8",
+    "fieldDelimiter": ",",
+    "quote": "\"",
+    "skipLeadingRows": 1
+  },
+  "hivePartitioningOptions": {
+    "mode": "CUSTOM",
+    "sourceUriPrefix": "gs://brutos-publicos/teste/{data:DATE}"
+  },
+  "schema": {
+    "fields": [
+      {
+        "name": "ano",
+        "type": "STRING"
+      },
+      {
+        "name": "mes",
+        "type": "STRING"
+      },
+      {
+        "name": "id_servidor_portal",
+        "type": "STRING"
+      },
+      {
+        "name": "cpf",
+        "type": "STRING"
+      },
+      {
+        "name": "nome",
+        "type": "STRING"
+      },
+      {
+        "name": "remuneracao_basica_bruta_r",
+        "type": "STRING"
+      },
+      {
+        "name": "remuneracao_basica_bruta_u",
+        "type": "STRING"
+      },
+      {
+        "name": "abate_teto_r",
+        "type": "STRING"
+      },
+      {
+        "name": "abate_teto_u",
+        "type": "STRING"
+      },
+      {
+        "name": "gratificacao_natalina_r",
+        "type": "STRING"
+      },
+      {
+        "name": "gratificacao_natalina_u",
+        "type": "STRING"
+      },
+      {
+        "name": "abate_teto_da_gratif_natalina_r",
+        "type": "STRING"
+      },
+      {
+        "name": "abate_teto_da_gratif_natalina_u",
+        "type": "STRING"
+      },
+      {
+        "name": "ferias_r",
+        "type": "STRING"
+      },
+      {
+        "name": "ferias_u",
+        "type": "STRING"
+      },
+      {
+        "name": "remuneracoes_eventuais_r",
+        "type": "STRING"
+      },
+      {
+        "name": "remuneracoes_eventuais_u",
+        "type": "STRING"
+      },
+      {
+        "name": "irrf_r",
+        "type": "STRING"
+      },
+      {
+        "name": "irrf_u",
+        "type": "STRING"
+      },
+      {
+        "name": "pss_rpgs_r",
+        "type": "STRING"
+      },
+      {
+        "name": "pss_rpgs_u",
+        "type": "STRING"
+      },
+      {
+        "name": "demais_deducoes_r",
+        "type": "STRING"
+      },
+      {
+        "name": "demais_deducoes_u",
+        "type": "STRING"
+      },
+      {
+        "name": "pensao_militar_r",
+        "type": "STRING"
+      },
+      {
+        "name": "pensao_militar_u",
+        "type": "STRING"
+      },
+      {
+        "name": "fundo_de_saude_r",
+        "type": "STRING"
+      },
+      {
+        "name": "fundo_de_saude_u",
+        "type": "STRING"
+      },
+      {
+        "name": "tx_de_ocupacao_imovel_r",
+        "type": "STRING"
+      },
+      {
+        "name": "tx_de_ocupacao_imovel_u",
+        "type": "STRING"
+      },
+      {
+        "name": "remuneracao_apos_deducoes_r",
+        "type": "STRING"
+      },
+      {
+        "name": "remuneracao_apos_deducoes_u",
+        "type": "STRING"
+      },
+      {
+        "name": "verbas_indenizatorias_civil_r",
+        "type": "STRING"
+      },
+      {
+        "name": "verbas_indenizatorias_civil_u",
+        "type": "STRING"
+      },
+      {
+        "name": "verbas_indenizatorias_militar_r",
+        "type": "STRING"
+      },
+      {
+        "name": "verbas_indenizatorias_militar_u",
+        "type": "STRING"
+      },
+      {
+        "name": "verbas_desligamento_voluntario_r",
+        "type": "STRING"
+      },
+      {
+        "name": "verbas_desligamento_voluntario_u",
+        "type": "STRING"
+      },
+      {
+        "name": "total_de_verbas_indenizatorias_r",
+        "type": "STRING"
+      },
+      {
+        "name": "total_de_verbas_indenizatorias_u",
+        "type": "STRING"
+      }
+    ]
+  },
+  "sourceFormat": "CSV",
+  "sourceUris": [
+    "gs://brutos-publicos/teste/*_RemuneracaoMilitares_cleaned.csv"
+  ]
+}

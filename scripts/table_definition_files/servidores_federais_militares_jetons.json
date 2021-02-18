@@ -1,0 +1,50 @@
+{
+  "csvOptions": {
+    "allowJaggedRows": false,
+    "allowQuotedNewlines": false,
+    "encoding": "UTF-8",
+    "fieldDelimiter": ",",
+    "quote": "\"",
+    "skipLeadingRows": 1
+  },
+  "hivePartitioningOptions": {
+    "mode": "CUSTOM",
+    "sourceUriPrefix": "gs://brutos-publicos/teste/{data:DATE}"
+  },
+  "schema": {
+    "fields": [
+      {
+        "name": "ano",
+        "type": "STRING"
+      },
+      {
+        "name": "mes",
+        "type": "STRING"
+      },
+      {
+        "name": "id_servidor",
+        "type": "STRING"
+      },
+      {
+        "name": "cpf",
+        "type": "STRING"
+      },
+      {
+        "name": "nome",
+        "type": "STRING"
+      },
+      {
+        "name": "empresa",
+        "type": "STRING"
+      },
+      {
+        "name": "valor",
+        "type": "STRING"
+      }
+    ]
+  },
+  "sourceFormat": "CSV",
+  "sourceUris": [
+    "gs://brutos-publicos/teste/*_Honorarios(Jetons)Militares_cleaned.csv"
+  ]
+}

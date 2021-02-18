@@ -1,0 +1,38 @@
+{
+  "hivePartitioningOptions": {
+    "mode": "CUSTOM",
+    "sourceUriPrefix": "gs://brutos-publicos/executivo/federal/dou-partitioned/{part_data_pub:DATE}/{part_secao:STRING}"
+  },
+  "schema": {
+    "fields": [
+      {
+        "name": "api_url",
+        "type": "STRING"
+      },
+      {
+        "name": "capture_date",
+        "type": "TIMESTAMP"
+      },
+      {
+        "name": "url",
+        "type": "STRING"
+      },
+      {
+        "name": "url_certificado",
+        "type": "STRING"
+      },
+      {
+        "name": "key",
+        "type": "STRING"
+      },
+      {
+        "name": "value",
+        "type": "STRING"
+      }
+    ]
+  },
+  "sourceFormat": "NEWLINE_DELIMITED_JSON",
+  "sourceUris": [
+    "gs://brutos-publicos/executivo/federal/dou-partitioned/*.json"
+  ]
+}
