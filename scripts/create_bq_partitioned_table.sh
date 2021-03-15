@@ -48,3 +48,13 @@ bq --project_id=gabinete-compartilhado mk --external_table_definition=table_defi
 
 # Hard-coded to build the EXTERNAL TABLE 'cadastro_civis' in dataset 'executivo_federal_servidores'
 bq --project_id=gabinete-compartilhado mk --external_table_definition=table_definition_files/servidores_federais_civis_cadastro.json executivo_federal_servidores.cadastro_civis
+
+# Hard-coded to build the EXTERNAL TABLE 'consulta_cand' in dataset 'tratado_tse'
+schema=`head -n1 ~/gabinete/projetos/laranjometro/dados/limpos/consulta_cand/consulta_cand_2020_BRASIL.csv | sed -e 's/,/:STRING,/g' -e 's/"//g' | awk '{print $1":STRING"}'`
+bq --project_id=gabinete-compartilhado mkdef --noautodetect --source_format=CSV --hive_partitioning_mode=CUSTOM --hive_partitioning_source_uri_prefix=gs://brutos-publicos/judiciario/tse/candidatos/{part_ano:INTEGER}/{part_uf:STRING} gs://brutos-publicos/judiciario/tse/candidatos/*.csv ${schema} | sed 's/"skipLeadingRows": 0/"skipLeadingRows": 1/g' > table_definition_files/consulta_cand.json
+bq --project_id=gabinete-compartilhado mk --external_table_definition=table_definition_files/consulta_cand.json tratado_tse.consulta_candidatos
+
+# Hard-coded to build the EXTERNAL TABLE 'consulta_cand' in dataset 'tratado_tse'
+schema=`head -n1 /home/skems/gabinete/dados/tse/limpos/prestacao_de_contas_eleitorais_candidatos/2014/receitas_candidatos_2014_BRASIL.csv | sed -e 's/,/:STRING,/g' | awk '{print $1":STRING"}'`
+bq --project_id=gabinete-compartilhado mkdef --noautodetect --source_format=CSV  gs://brutos-publicos/judiciario/tse/prestacao_contas/candidatos/part_ano=2014/receitas_candidatos_2014_*.csv ${schema} | sed 's/"skipLeadingRows": 0/"skipLeadingRows": 1/g' > table_definition_files/receitas_candidatos_2014.json
+bq --project_id=gabinete-compartilhado mk --external_table_definition=table_definition_files/receitas_candidatos_2014.json tratado_tse.receitas_candidatos_2014

@@ -1,0 +1,146 @@
+{
+  "csvOptions": {
+    "allowJaggedRows": false,
+    "allowQuotedNewlines": false,
+    "encoding": "UTF-8",
+    "fieldDelimiter": ",",
+    "quote": "\"",
+    "skipLeadingRows": 1
+  },
+  "schema": {
+    "fields": [
+      {
+        "name": "cod_eleicao",
+        "type": "STRING"
+      },
+      {
+        "name": "desc_eleicao",
+        "type": "STRING"
+      },
+      {
+        "name": "data_hora",
+        "type": "STRING"
+      },
+      {
+        "name": "cnpj_prestador_conta",
+        "type": "STRING"
+      },
+      {
+        "name": "sequencial_candidato",
+        "type": "STRING"
+      },
+      {
+        "name": "uf",
+        "type": "STRING"
+      },
+      {
+        "name": "sigla_partido",
+        "type": "STRING"
+      },
+      {
+        "name": "numero_candidato",
+        "type": "STRING"
+      },
+      {
+        "name": "cargo",
+        "type": "STRING"
+      },
+      {
+        "name": "nome_candidato",
+        "type": "STRING"
+      },
+      {
+        "name": "cpf_candidato",
+        "type": "STRING"
+      },
+      {
+        "name": "numero_recibo_eleitoral",
+        "type": "STRING"
+      },
+      {
+        "name": "numero_documento",
+        "type": "STRING"
+      },
+      {
+        "name": "cpfcnpj_doador",
+        "type": "STRING"
+      },
+      {
+        "name": "nome_doador",
+        "type": "STRING"
+      },
+      {
+        "name": "nome_doador_receita_federal",
+        "type": "STRING"
+      },
+      {
+        "name": "sigla_ue_doador",
+        "type": "STRING"
+      },
+      {
+        "name": "numero_partido_doador",
+        "type": "STRING"
+      },
+      {
+        "name": "numero_candidato_doador",
+        "type": "STRING"
+      },
+      {
+        "name": "cod_setor_economico_doador",
+        "type": "STRING"
+      },
+      {
+        "name": "setor_economico_doador",
+        "type": "STRING"
+      },
+      {
+        "name": "data_receita",
+        "type": "STRING"
+      },
+      {
+        "name": "valor_receita",
+        "type": "STRING"
+      },
+      {
+        "name": "tipo_receita",
+        "type": "STRING"
+      },
+      {
+        "name": "fonte_recurso",
+        "type": "STRING"
+      },
+      {
+        "name": "especie_recurso",
+        "type": "STRING"
+      },
+      {
+        "name": "descricao_receita",
+        "type": "STRING"
+      },
+      {
+        "name": "cpfcnpj_doador_originario",
+        "type": "STRING"
+      },
+      {
+        "name": "nome_doador_originario",
+        "type": "STRING"
+      },
+      {
+        "name": "tipo_doador_originario",
+        "type": "STRING"
+      },
+      {
+        "name": "setor_economico_doador_originario",
+        "type": "STRING"
+      },
+      {
+        "name": "nome_doador_originario_receita_federal",
+        "type": "STRING"
+      }
+    ]
+  },
+  "sourceFormat": "CSV",
+  "sourceUris": [
+    "gs://brutos-publicos/judiciario/tse/prestacao_contas/candidatos/part_ano=2014/receitas_candidatos_2014_*.csv"
+  ]
+}

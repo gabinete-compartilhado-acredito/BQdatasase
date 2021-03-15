@@ -1,0 +1,282 @@
+{
+  "csvOptions": {
+    "allowJaggedRows": false,
+    "allowQuotedNewlines": false,
+    "encoding": "UTF-8",
+    "fieldDelimiter": ",",
+    "quote": "\"",
+    "skipLeadingRows": 1
+  },
+  "hivePartitioningOptions": {
+    "mode": "CUSTOM",
+    "sourceUriPrefix": "gs://brutos-publicos/judiciario/tse/candidatos/{part_ano:INTEGER}/{part_uf:STRING}"
+  },
+  "schema": {
+    "fields": [
+      {
+        "name": "DT_GERACAO",
+        "type": "STRING"
+      },
+      {
+        "name": "HH_GERACAO",
+        "type": "STRING"
+      },
+      {
+        "name": "ANO_ELEICAO",
+        "type": "STRING"
+      },
+      {
+        "name": "CD_TIPO_ELEICAO",
+        "type": "STRING"
+      },
+      {
+        "name": "NM_TIPO_ELEICAO",
+        "type": "STRING"
+      },
+      {
+        "name": "NR_TURNO",
+        "type": "STRING"
+      },
+      {
+        "name": "CD_ELEICAO",
+        "type": "STRING"
+      },
+      {
+        "name": "DS_ELEICAO",
+        "type": "STRING"
+      },
+      {
+        "name": "DT_ELEICAO",
+        "type": "STRING"
+      },
+      {
+        "name": "TP_ABRANGENCIA",
+        "type": "STRING"
+      },
+      {
+        "name": "SG_UF",
+        "type": "STRING"
+      },
+      {
+        "name": "SG_UE",
+        "type": "STRING"
+      },
+      {
+        "name": "NM_UE",
+        "type": "STRING"
+      },
+      {
+        "name": "CD_CARGO",
+        "type": "STRING"
+      },
+      {
+        "name": "DS_CARGO",
+        "type": "STRING"
+      },
+      {
+        "name": "SQ_CANDIDATO",
+        "type": "STRING"
+      },
+      {
+        "name": "NR_CANDIDATO",
+        "type": "STRING"
+      },
+      {
+        "name": "NM_CANDIDATO",
+        "type": "STRING"
+      },
+      {
+        "name": "NM_URNA_CANDIDATO",
+        "type": "STRING"
+      },
+      {
+        "name": "NM_SOCIAL_CANDIDATO",
+        "type": "STRING"
+      },
+      {
+        "name": "NR_CPF_CANDIDATO",
+        "type": "STRING"
+      },
+      {
+        "name": "NM_EMAIL",
+        "type": "STRING"
+      },
+      {
+        "name": "CD_SITUACAO_CANDIDATURA",
+        "type": "STRING"
+      },
+      {
+        "name": "DS_SITUACAO_CANDIDATURA",
+        "type": "STRING"
+      },
+      {
+        "name": "CD_DETALHE_SITUACAO_CAND",
+        "type": "STRING"
+      },
+      {
+        "name": "DS_DETALHE_SITUACAO_CAND",
+        "type": "STRING"
+      },
+      {
+        "name": "TP_AGREMIACAO",
+        "type": "STRING"
+      },
+      {
+        "name": "NR_PARTIDO",
+        "type": "STRING"
+      },
+      {
+        "name": "SG_PARTIDO",
+        "type": "STRING"
+      },
+      {
+        "name": "NM_PARTIDO",
+        "type": "STRING"
+      },
+      {
+        "name": "SQ_COLIGACAO",
+        "type": "STRING"
+      },
+      {
+        "name": "NM_COLIGACAO",
+        "type": "STRING"
+      },
+      {
+        "name": "DS_COMPOSICAO_COLIGACAO",
+        "type": "STRING"
+      },
+      {
+        "name": "CD_NACIONALIDADE",
+        "type": "STRING"
+      },
+      {
+        "name": "DS_NACIONALIDADE",
+        "type": "STRING"
+      },
+      {
+        "name": "SG_UF_NASCIMENTO",
+        "type": "STRING"
+      },
+      {
+        "name": "CD_MUNICIPIO_NASCIMENTO",
+        "type": "STRING"
+      },
+      {
+        "name": "NM_MUNICIPIO_NASCIMENTO",
+        "type": "STRING"
+      },
+      {
+        "name": "DT_NASCIMENTO",
+        "type": "STRING"
+      },
+      {
+        "name": "NR_IDADE_DATA_POSSE",
+        "type": "STRING"
+      },
+      {
+        "name": "NR_TITULO_ELEITORAL_CANDIDATO",
+        "type": "STRING"
+      },
+      {
+        "name": "CD_GENERO",
+        "type": "STRING"
+      },
+      {
+        "name": "DS_GENERO",
+        "type": "STRING"
+      },
+      {
+        "name": "CD_GRAU_INSTRUCAO",
+        "type": "STRING"
+      },
+      {
+        "name": "DS_GRAU_INSTRUCAO",
+        "type": "STRING"
+      },
+      {
+        "name": "CD_ESTADO_CIVIL",
+        "type": "STRING"
+      },
+      {
+        "name": "DS_ESTADO_CIVIL",
+        "type": "STRING"
+      },
+      {
+        "name": "CD_COR_RACA",
+        "type": "STRING"
+      },
+      {
+        "name": "DS_COR_RACA",
+        "type": "STRING"
+      },
+      {
+        "name": "CD_OCUPACAO",
+        "type": "STRING"
+      },
+      {
+        "name": "DS_OCUPACAO",
+        "type": "STRING"
+      },
+      {
+        "name": "VR_DESPESA_MAX_CAMPANHA",
+        "type": "STRING"
+      },
+      {
+        "name": "CD_SIT_TOT_TURNO",
+        "type": "STRING"
+      },
+      {
+        "name": "DS_SIT_TOT_TURNO",
+        "type": "STRING"
+      },
+      {
+        "name": "ST_REELEICAO",
+        "type": "STRING"
+      },
+      {
+        "name": "ST_DECLARAR_BENS",
+        "type": "STRING"
+      },
+      {
+        "name": "NR_PROTOCOLO_CANDIDATURA",
+        "type": "STRING"
+      },
+      {
+        "name": "NR_PROCESSO",
+        "type": "STRING"
+      },
+      {
+        "name": "CD_SITUACAO_CANDIDATO_PLEITO",
+        "type": "STRING"
+      },
+      {
+        "name": "DS_SITUACAO_CANDIDATO_PLEITO",
+        "type": "STRING"
+      },
+      {
+        "name": "CD_SITUACAO_CANDIDATO_URNA",
+        "type": "STRING"
+      },
+      {
+        "name": "DS_SITUACAO_CANDIDATO_URNA",
+        "type": "STRING"
+      },
+      {
+        "name": "ST_CANDIDATO_INSERIDO_URNA",
+        "type": "STRING"
+      },
+      {
+        "name": "IDADE_DATA_ELEICAO",
+        "type": "STRING"
+      },
+      {
+        "name": "SG_LEGENDA",
+        "type": "STRING"
+      }
+    ]
+  },
+  "sourceFormat": "CSV",
+  "sourceUris": [
+    "gs://brutos-publicos/judiciario/tse/candidatos/*.csv"
+  ]
+}
