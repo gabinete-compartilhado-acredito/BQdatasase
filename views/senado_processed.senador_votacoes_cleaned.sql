@@ -36,7 +36,7 @@ SELECT
   TotalVotosNao AS n_votos_nao, 
   TotalVotosAbstencao AS n_votos_abstencao, 
   -- Info do voto do senador:
-  ARRAY_REVERSE(SPLIT(api_url, '/'))[OFFSET(1)] AS id_senador,
+  CAST(ARRAY_REVERSE(SPLIT(api_url, '/'))[OFFSET(1)] AS INT64) AS id_senador,
   SiglaDescricaoVoto AS sigla_voto,
   DescricaoVoto AS descricao_voto,
   -- Info da tramitação:

@@ -1,0 +1,40 @@
+/***
+    Valor total doado aos senadores em 2018 e 2014, por CNPJ raiz
+    
+    - Agrupamos as doações por senador, por setor econômico e 
+      pelos oito primeiros 
+      dígitos do CNPJ (que ignora diferenciação entre filiais)
+      e contabilizamos o total doado por aquela empresa, para 
+      o senador em questão.
+      
+    Note que doações de uma pessoa física com mais de uma empresa
+    serão divididas entre todas as empresas que a pessoa possui.
+    
+    Note também que filiais com raiz do CNPJ iguais podem ter 
+    CNAEs diferentes, de maneira que os valores doados por uma 
+    mesma empresa raiz pode estar distribuído por mais de um setor.
+
+    Para os senadores eleitos em 2014, contabilizamos as receitas 
+    dessa eleição. Esse procedimento é repetido de maneira 
+    análoga para 2018.
+ ***/
+
+SELECT
+  -- Id do parlamentar:
+  d.id_parlamentar, 
+  ANY_VALUE(d.nome_parlamentar) AS nome_parlamentar,
+  ANY_VALUE(d.sigla_partido) AS sigla_partido,
+  ANY_VALUE(d.uf) AS uf,
+  -- Id da empresa doadora:
+  IFNULL(SUBSTR(d.cnpj_empresa_doador, 1, 8), 'Sem CNPJ associado') AS raiz_cnpj_empresa_doador,
+  a.grupo AS grupo_cnae, 
+  ANY_VALUE(IFNULL(d.razao_social_doador, 'Sem CNPJ associado')) AS razao_social_doador,
+  -- Valor total doado pela empresa e filiais:
+  SUM(d.valor_receita_por_cnae) AS valor_doado
+  
+FROM 
+  `gabinete-compartilhado.analise_congresso_interesses.cnaes_doadores_senadores_leg56` AS d
+  LEFT JOIN `gabinete-compartilhado.receita_federal.cnaes_agrupamento_de_divisoes` AS a
+  ON d.cnae_descricao = a.denom_divisao
+GROUP BY id_parlamentar, grupo_cnae, raiz_cnpj_empresa_doador
+ORDER BY nome_parlamentar, grupo_cnae, razao_social_doador

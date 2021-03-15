@@ -9,14 +9,14 @@
 WITH tab_temas AS (
   SELECT 
     p.id_votacao,
-    ARRAY_AGG(DISTINCT t.tema IGNORE NULLS ORDER BY t.tema) AS temas,
+    ARRAY_AGG(DISTINCT t.tema_unico IGNORE NULLS ORDER BY t.tema_unico) AS temas,
     ARRAY_AGG(DISTINCT m.tema_agrupado IGNORE NULLS ORDER BY m.tema_agrupado) AS macrotemas
 
   FROM `gabinete-compartilhado.camara_v2_processed.votacoes_proposicoes_afetadas` AS p
-  LEFT JOIN `gabinete-compartilhado.camara_v2_processed.proposicoes_temas_cleaned` AS t
-  ON p.id_afetada = t.id_proposicao 
+  LEFT JOIN `gabinete-compartilhado.camara_v2_processed.proposicoes_temas_definitivo` AS t
+  ON p.id_afetada = t.id_prop_1
   LEFT JOIN `gabinete-compartilhado.bruto_gabinete_administrativo.camara_proposicoes_temas_macrotemas` AS m
-  ON t.tema = m.tema
+  ON t.tema_unico = m.tema
   GROUP BY p.id_votacao
 )
 

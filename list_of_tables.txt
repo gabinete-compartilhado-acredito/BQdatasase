@@ -7,15 +7,28 @@ analise_congresso_atividade                ----------
   politicos_renovacao_2019_todos           (VIEW)
   tramitacao_por_parlamentar_              (TABLE)
 
+analise_congresso_interesses               ----------
+  cnaes_doadores_deputados_2018            (VIEW)
+  cnaes_doadores_senadores_2014            (VIEW)
+  cnaes_doadores_senadores_2018            (VIEW)
+  cnaes_doadores_senadores_leg56           (VIEW)
+  receitas_por_empresa_deputados_2018      (VIEW)
+  receitas_por_empresa_senadores_leg56     (VIEW)
+  receitas_por_setor_economico_deputados_2018 (VIEW)
+  receitas_por_setor_economico_senadores_leg56 (VIEW)
+
 analise_congresso_poder                    ----------
   camara_bancadas_publica_consolidado      (VIEW)
   camara_bloco_numero_membros              (VIEW)
   camara_liderancas                        (VIEW)
   camara_liderancas_score                  (VIEW)
+  camara_receita_votos_2018                (VIEW)
   cargo_score                              (EXTERNAL)
+  senado_receita_votos                     (VIEW)
 
 analise_congresso_votacoes                 ----------
   alinhamento_alessandro_senadores         (VIEW)
+  alinhamento_por_tema_senado              (VIEW)
   alinhamento_por_temas_camara             (VIEW)
   alinhamento_rigoni_deputados             (VIEW)
   alinhamento_tabata_deputados             (VIEW)
@@ -24,7 +37,6 @@ analise_congresso_votacoes                 ----------
   camara_orientacao_deputado               (VIEW)
   camara_orientacao_orientacao             (VIEW)
   senado_senador_senador                   (VIEW)
-  votacoes_camara_macro-temas              (VIEW)
   votacoes_v2_deputado_deputado            (VIEW)
   votacoes_v2_deputado_deputado_por_tema   (VIEW)
   votacoes_v2_deputado_deputado_presencial (VIEW)
@@ -52,6 +64,8 @@ bruto_gabinete_administrativo              ----------
   senado_cargo_remuneracao_vigencia        (VIEW)
   senado_comissionados_nome_cargos         (EXTERNAL)
   senado_comissionados_remuneracao         (EXTERNAL)
+  senado_proposicoes_temas_macrotemas      (EXTERNAL)
+  senado_proposicoes_temas_manual          (EXTERNAL)
   servidores_traducao_nomes_senadores      (EXTERNAL)
   temas_proposicoes_camara_agg_macro-temas (TABLE)
 
@@ -134,6 +148,7 @@ camara_v2_processed                        ----------
   proposicoes_completa                     (VIEW)
   proposicoes_processed                    (VIEW)
   proposicoes_temas_cleaned                (VIEW)
+  proposicoes_temas_definitivo             (VIEW)
   proposicoes_temas_processed              (VIEW)
   proposicoes_tramitacoes                  (VIEW)
   tramitacoes_cleaned                      (VIEW)
@@ -148,6 +163,7 @@ camara_v2_processed                        ----------
   votacoes_votos_orientados                (VIEW)
 
 checkup_de_dados                           ----------
+  cnaes_sem_denominacao                    (VIEW)
   senador_servidores_remuneracao_duplicates (VIEW)
   senador_servidores_remuneracao_join      (VIEW)
   temas_sem_macrotemas_definidos           (VIEW)
@@ -168,6 +184,7 @@ congresso                                  ----------
   partidos_novas_siglas                    (EXTERNAL)
   proposicoes                              (VIEW)
   proposicoes_completa                     (VIEW)
+  proposicoes_correspondencia_senado_camara (VIEW)
   proposicoes_temas                        (VIEW)
   senado_desarquivamentos                  (VIEW)
   senado_orientacao_governo                (VIEW)
@@ -246,7 +263,9 @@ paineis                                    ----------
   senado_apoio_ao_governo_por_votacao      (VIEW)
 
 receita_federal                            ----------
+  cnaes_agrupamento_de_divisoes            (EXTERNAL)
   cnaes_denominacoes                       (EXTERNAL)
+  cnaes_denominacoes_cleaned               (VIEW)
   cnaes_secundarias                        (EXTERNAL)
   cnaes_secundarias_cleaned                (VIEW)
   empresas                                 (EXTERNAL)
@@ -304,7 +323,10 @@ senado_processed                           ----------
   senador_comissionados_remuneracao        (VIEW)
   senador_servidores_remuneracao           (VIEW)
   senador_votacoes_cleaned                 (VIEW)
+  senador_votacoes_simplificado            (VIEW)
   senadores_expandida                      (VIEW)
+  senadores_leg56_cpf_tse                  (TABLE)
+  senadores_leg56_cpf_tse_view             (VIEW)
 
 siconv                                     ----------
   data_carga                               (TABLE)
@@ -315,19 +337,27 @@ testing_mess                               ----------
 tratado_tse                                ----------
   consulta_cand                            (EXTERNAL)
   consulta_cand_2018                       (EXTERNAL)
+  consulta_candidatos                      (EXTERNAL)
   doador_originario_2018                   (EXTERNAL)
   filiados                                 (EXTERNAL)
   orgaos_partidarios                       (TABLE)
   perfil_eleitorado                        (EXTERNAL)
+  receitas_candidatos_2014                 (EXTERNAL)
   receitas_candidatos_2018                 (EXTERNAL)
+  total_votos_por_eleicao_cand             (EXTERNAL)
 
 tratado_tse_processed                      ----------
   consulta_cand_2018_cleaned               (VIEW)
+  consulta_candidatos_cleaned              (VIEW)
   doador_originario_2018_cleaned           (VIEW)
   doadores_pessoa_fisica_2018              (VIEW)
   perfil_eleitorado_cleaned                (VIEW)
+  receitas_candidatos_2014_cleaned         (VIEW)
   receitas_candidatos_2018_cleaned         (VIEW)
+  receitas_completas_2014                  (VIEW)
   receitas_completas_2018                  (VIEW)
+  senado_receitas_completas_2014_2018      (VIEW)
+  total_de_receitas_por_candidato_2018     (VIEW)
 
 views_publicos                             ----------
   br_imprensa_nacional_dou_3               (TABLE)

@@ -8,10 +8,14 @@
      receita mãe. Ou seja: estas colunas servem como identificadoras únicas das doações: seus valores podem ser somados 
      para representar um total doado ou recebido.
      
-     Por fim, criamos duas colunas que verificam se existem inconsistências entre a soma dos valores originários e o 
+     Em seguida, criamos duas colunas que verificam se existem inconsistências entre a soma dos valores originários e o 
      valor da receita mãe (cerca de 3% dos dados não batem).
+     
+     Por fim, adicionamos uma coluna que classifica a receita em pública (tipicamente vindo de campanhas eleitorais
+     ou de partidos) ou privada (de pessoas física ou empresas).
  ***/
 
+WITH receitas_completas AS (
 SELECT
   -- Dados das receitas dos candidatos:
   r.*, 
@@ -36,3 +40,45 @@ FROM `gabinete-compartilhado.tratado_tse_processed.receitas_candidatos_2018_clea
 LEFT JOIN `gabinete-compartilhado.tratado_tse_processed.doador_originario_2018_cleaned` AS o
 ON r.sequencial_prestador_contas = o.sequencial_prestador_contas 
 AND r.sequencial_receita = o.sequencial_receita
+)
+
+SELECT *, 
+  -- Indicador de tipo de fonte de receita:
+  CASE
+    WHEN
+    nome_doador_rfb_unico NOT LIKE '%PARTIDO%'
+      AND nome_doador_rfb_unico NOT LIKE '%BRASIL - BR - NACIONAL%'
+      AND nome_doador_rfb_unico NOT LIKE '%ELEICAO 201%'
+      AND nome_doador_rfb_unico NOT LIKE '%ELEICOES 2004%'
+      AND nome_doador_rfb_unico NOT LIKE '%DIRETORIO NACIONAL%'
+      AND nome_doador_rfb_unico NOT LIKE '%DIRETORIO ESTADUAL%'
+      AND nome_doador_rfb_unico NOT LIKE '%DIRETORIO REGIONAL%'
+      AND nome_doador_rfb_unico NOT LIKE '%REDE SUSTENTABILIDADE%'
+      AND nome_doador_rfb_unico NOT LIKE '%MOVIMENTO DEMOCRATICO BRASILEIRO%'
+      AND nome_doador_rfb_unico NOT LIKE '%SOLIDARIEDADE%'
+      AND nome_doador_rfb_unico NOT LIKE 'PODEMOS'
+      AND nome_doador_rfb_unico NOT LIKE '%DIRETORIO D%'
+      AND nome_doador_rfb_unico NOT LIKE '%PROGRESSISTAS%'
+      AND nome_doador_rfb_unico NOT LIKE '%DEMOCRATAS%'
+      AND nome_doador_rfb_unico NOT LIKE '%ESTADUAL'
+      AND NOT (nome_doador_rfb_unico LIKE '%PATRIOTA%' AND nome_doador_rfb_unico LIKE '%51%')
+      AND nome_doador_rfb_unico NOT LIKE 'PATRIOTA (PATRI)'
+      AND nome_doador_rfb_unico NOT LIKE '%DEMOCRACIA CRISTA%'
+      AND nome_doador_rfb_unico NOT LIKE '%REGIONAL'
+      AND nome_doador_rfb_unico NOT LIKE '%COMISSAO PROVISORIA%'
+      AND nome_doador_rfb_unico NOT LIKE '%DIRECAO REGIONAL%'
+      AND nome_doador_rfb_unico NOT LIKE 'REPUBLICANOS'
+      AND nome_doador_rfb_unico NOT LIKE '%DIRETORIO MUNICIPAL%'
+      AND nome_doador_rfb_unico NOT IN (
+        'PATRIOTA - PARANAGUA - PR - MUNICIPAL', 
+        '19 - PODEMOS BAURU - SP - MUNICIPAL', 
+        'DIRETORIO METROPOLITANO - PDT',
+        'RIO DE JANEIRO PATRIOTAS',
+        'COMISSAO DIRETORA PROVISORIA DO PCB DE MINAS GERAIS',
+        'PODEMOS - ORGAO PROVISORIO MUNICIPAL',
+        'TRIBUNAL SUPERIOR ELEITORAL'
+      ) THEN 'Privada'
+    ELSE 'Pública'
+  END AS tipo_receita
+
+FROM receitas_completas 
