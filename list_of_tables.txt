@@ -23,8 +23,10 @@ analise_congresso_poder                    ----------
   camara_liderancas                        (VIEW)
   camara_liderancas_score                  (VIEW)
   camara_receita_votos_2018                (VIEW)
+  camara_total_receitas_partidarias_2018   (VIEW)
   cargo_score                              (EXTERNAL)
   senado_receita_votos                     (VIEW)
+  senado_total_receitas_partidarias_leg56  (VIEW)
 
 analise_congresso_votacoes                 ----------
   alinhamento_alessandro_senadores         (VIEW)
@@ -35,6 +37,7 @@ analise_congresso_votacoes                 ----------
   camara_alinhamentos                      (VIEW)
   camara_deputado_deputado                 (VIEW)
   camara_orientacao_deputado               (VIEW)
+  camara_orientacao_deputado_v2            (VIEW)
   camara_orientacao_orientacao             (VIEW)
   senado_senador_senador                   (VIEW)
   votacoes_v2_deputado_deputado            (VIEW)
@@ -332,7 +335,6 @@ siconv                                     ----------
   data_carga                               (TABLE)
 
 testing_mess                               ----------
-  ocupantes_cargos_altos_mec_2021_01       (EXTERNAL)
 
 tratado_tse                                ----------
   consulta_cand                            (EXTERNAL)
@@ -356,6 +358,9 @@ tratado_tse_processed                      ----------
   receitas_candidatos_2018_cleaned         (VIEW)
   receitas_completas_2014                  (VIEW)
   receitas_completas_2018                  (VIEW)
+  receitas_partidarias_cand_dep_federal_2018 (VIEW)
+  receitas_partidarias_cand_senador_2014   (VIEW)
+  receitas_partidarias_cand_senador_2018   (VIEW)
   senado_receitas_completas_2014_2018      (VIEW)
   total_de_receitas_por_candidato_2018     (VIEW)
 
