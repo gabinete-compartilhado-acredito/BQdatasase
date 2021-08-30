@@ -1,0 +1,125 @@
+{
+  "hivePartitioningOptions": {
+    "mode": "CUSTOM",
+    "sourceUriPrefix": "gs://brutos-publicos/redes-sociais/twitter/twitter-lists/{nome_lista:STRING}/{data_ini:DATE}"
+  },
+  "schema": {
+    "fields": [
+      {
+      "name": "user",
+      "type": "RECORD",
+      "fields": [
+            {
+            "name": "id", 
+            "type": "INTEGER"
+            },
+            {
+            "name": "name", 
+            "type": "STRING"
+            },
+            {
+            "name": "screen_name",
+            "type": "STRING"
+            },
+            {
+            "name": "description",
+            "type": "STRING"
+            },
+            {
+            "name": "location",
+            "type": "STRING"
+            },
+            {
+            "name": "protected",
+            "type": "BOOLEAN"
+            },
+            {
+            "name": "followers_count",
+            "type": "INTEGER"
+            },
+            {
+            "name": "friends_count",
+            "type": "INTEGER"
+            },
+            {
+            "name": "listed_count",
+            "type": "INTEGER"
+            },
+            {
+            "name": "favourites_count",
+            "type": "INTEGER"
+            },
+            {
+            "name": "statuses_count",
+            "type": "INTEGER"
+            },
+            {
+            "name": "created_at",
+            "type": "STRING"
+            },
+            {
+            "name": "verified",
+            "type": "BOOLEAN"
+            },    
+            ]
+      },
+      {
+        "name": "created_at",
+        "type": "STRING"
+      },
+      {
+        "name": "id",
+        "type": "INTEGER"
+      },
+      {
+        "name": "full_text",
+        "type": "STRING"
+      },
+      {
+        "name": "truncated",
+        "type": "BOOLEAN"
+      },
+      {
+        "name": "is_quote_status",
+        "type": "BOOLEAN"
+      },
+      {
+        "name": "possibly_sensitive",
+        "type": "BOOLEAN"
+      },
+      {
+        "name": "retweet_count",
+        "type": "INTEGER"
+      },
+      {
+        "name": "favorite_count",
+        "type": "INTEGER"
+      },
+      {
+        "name": "quoted_status_id",
+        "type": "INTEGER"
+      },            
+      {
+        "name": "in_reply_to_status_id",
+        "type": "INTEGER"
+      },
+      {
+        "name": "in_reply_to_user_id",
+        "type": "INTEGER"
+      },
+      {
+        "name": "in_reply_to_screen_name",
+        "type": "STRING"
+      },
+      {
+        "name": "capture_date",
+        "type": "TIMESTAMP"
+      }
+    ]
+  },
+    "sourceFormat": "NEWLINE_DELIMITED_JSON",
+    "ignoreUnknownValues": true,
+  "sourceUris": [
+    "gs://brutos-publicos/redes-sociais/twitter/twitter-lists/*.json"
+  ]
+}

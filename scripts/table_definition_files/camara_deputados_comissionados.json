@@ -1,0 +1,128 @@
+{
+  "schema": {
+    "fields": [
+      {
+        "name": "nome",
+        "type": "STRING"
+      },
+      {
+        "name": "grupo_funcional",
+        "type": "STRING"
+      },
+      {
+        "name": "cargoXfuncao",
+        "type": "STRING"
+      },
+      {
+        "name": "cargo",
+        "type": "STRING"
+      },
+      {
+        "name": "periodo_exercicio",
+        "type": "STRING"
+      },
+      {
+        "name": "remuneracao_mensal",
+        "type": "STRING"
+      },
+      {
+        "name": "data",
+        "type": "STRING"
+      },
+      {
+        "name": "tipo",
+        "type": "STRING"
+      },            
+      {
+        "name": "folha_categoria_funcional",
+        "type": "STRING"
+      },
+      {
+        "name": "folha_data_exercicio",
+        "type": "STRING"
+      },
+      {
+        "name": "folha_cargo",
+        "type": "STRING"
+      },
+      {
+        "name": "folha_funcaoXcargo_comissao",
+        "type": "STRING"
+      },
+      {
+        "name": "remuneracao_fixa",
+        "type": "FLOAT"
+      },
+      {
+        "name": "vantagens_natureza",
+        "type": "FLOAT"
+      },
+      {
+        "name": "funcao_cargo",
+        "type": "FLOAT"
+      },
+      {
+        "name": "gratificacao_natalina",
+        "type": "FLOAT"
+      },
+      {
+        "name": "ferias_1X3",
+        "type": "FLOAT"
+      },
+      {
+        "name": "outras_remuneracoes",
+        "type": "FLOAT"
+      },
+            
+      {
+        "name": "abono_permanencia",
+        "type": "FLOAT"
+      },
+      {
+        "name": "redutor_constitucional",
+        "type": "FLOAT"
+      },
+      {
+        "name": "contribuicao_previdenciaria",
+        "type": "FLOAT"
+      },
+      {
+        "name": "imposto_renda",
+        "type": "FLOAT"
+      },
+      {
+        "name": "remuneracao_apos",
+        "type": "FLOAT"
+      },
+      {
+        "name": "diarias",
+        "type": "FLOAT"
+      },
+      {
+        "name": "auxilios",
+        "type": "FLOAT"
+      },
+      {
+        "name": "vantagens_indenizatorias",
+        "type": "FLOAT"
+      },
+      {
+        "name": "comissionado_url",
+        "type": "STRING"
+      },
+      {
+        "name": "api_url",
+        "type": "STRING"
+      },
+      {
+        "name": "capture_date",
+        "type": "TIMESTAMP"
+      }
+    ]
+  },
+    "sourceFormat": "NEWLINE_DELIMITED_JSON",
+    "ignoreUnknownValues": true,
+  "sourceUris": [
+    "gs://brutos-publicos/legislativo/camara/scrapping/comissionados/camara-deputados-comissionados*.json"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "csvOptions": {
+    "allowJaggedRows": false,
+    "allowQuotedNewlines": false,
+    "encoding": "UTF-8",
+    "fieldDelimiter": ",",
+    "quote": "\"",
+    "skipLeadingRows": 1
+  },
+  "schema": {
+    "fields": [
+      {
+        "name": "Codigo_Materia",
+        "type": "INTEGER"
+      },
+      {
+        "name": "Sigla_Subtipo_Materia",
+        "type": "STRING"
+      },
+      {
+        "name": "Ementa_Materia",
+        "type": "STRING"
+      },
+      {
+        "name": "assunto_pred",
+        "type": "STRING"
+      }
+    ]
+  },
+  "sourceFormat": "CSV",
+  "sourceUris": [
+    "gs://brutos-publicos/legislativo/senado/gabinete/proposicoes/classificacao_automatica_materias_senado_2021-04-21.csv"
+  ]
+}
