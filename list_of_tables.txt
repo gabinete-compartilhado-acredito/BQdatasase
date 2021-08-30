@@ -5,6 +5,10 @@ analise_congresso_atividade                ----------
   deputados_temas_interesse                (VIEW)
   deputados_temas_interesse_consolidado    (VIEW)
   politicos_renovacao_2019_todos           (VIEW)
+  senadores_temas_interesse                (VIEW)
+  senadores_temas_interesse_consolidado    (VIEW)
+  senadores_temas_interesse_materias       (VIEW)
+  senadores_temas_interesse_relatorias     (VIEW)
   tramitacao_por_parlamentar_              (TABLE)
 
 analise_congresso_interesses               ----------
@@ -49,6 +53,7 @@ analise_indicacoes_federal                 ----------
   dou_e_comissionados_raw                  (TABLE)
 
 bruto_gabinete_administrativo              ----------
+  busca_cpfs                               (VIEW)
   camara_bancadas_publica_2016             (EXTERNAL)
   camara_proposicoes_temas_macrotemas      (EXTERNAL)
   contabilidade_assinaturas                (VIEW)
@@ -56,6 +61,7 @@ bruto_gabinete_administrativo              ----------
   contabilidade_assinaturas_manual         (EXTERNAL)
   deputados_legis56_renovacao              (TABLE)
   genero_dos_nomes                         (EXTERNAL)
+  ipca                                     (EXTERNAL)
   liderancas_raps                          (EXTERNAL)
   parlamentares_grupos_suprapartidarios    (EXTERNAL)
   parlamentares_renovabr                   (EXTERNAL)
@@ -67,6 +73,7 @@ bruto_gabinete_administrativo              ----------
   senado_cargo_remuneracao_vigencia        (VIEW)
   senado_comissionados_nome_cargos         (EXTERNAL)
   senado_comissionados_remuneracao         (EXTERNAL)
+  senado_proposicoes_temas_auto            (EXTERNAL)
   senado_proposicoes_temas_macrotemas      (EXTERNAL)
   senado_proposicoes_temas_manual          (EXTERNAL)
   servidores_traducao_nomes_senadores      (EXTERNAL)
@@ -235,6 +242,8 @@ executivo_federal_dou                      ----------
 
 executivo_federal_outros                   ----------
   auxilio_emergencial                      (EXTERNAL)
+  campanha_cuidado_precoce                 (EXTERNAL)
+  campanha_cuidado_precoce_cleaned         (VIEW)
 
 executivo_federal_servidores               ----------
   afastamentos_civis                       (EXTERNAL)
@@ -271,6 +280,7 @@ receita_federal                            ----------
   cnaes_denominacoes_cleaned               (VIEW)
   cnaes_secundarias                        (EXTERNAL)
   cnaes_secundarias_cleaned                (VIEW)
+  conexao_entre_socios_via_empresas        (VIEW)
   empresas                                 (EXTERNAL)
   empresas_cleaned                         (VIEW)
   socios                                   (EXTERNAL)
@@ -282,6 +292,7 @@ redes_sociais                              ----------
   deputados_tweets_cleaned                 (VIEW)
   deputados_twitter_tweets                 (VIEW)
   deputados_wikipedia                      (EXTERNAL)
+  listas_do_twitter                        (EXTERNAL)
   perfil_twitter_deputados                 (EXTERNAL)
   perfil_twitter_senadores                 (EXTERNAL)
   projeto_twitter                          (TABLE)
@@ -291,6 +302,9 @@ redes_sociais                              ----------
   senadores_twitter_perfil                 (TABLE)
   senadores_twitter_tweet                  (VIEW)
   senadores_wikipedia                      (EXTERNAL)
+  tweets_historicos                        (EXTERNAL)
+  tweets_historicos_cleaned                (VIEW)
+  tweets_listas                            (EXTERNAL)
   twitter_legis56                          (EXTERNAL)
   twitter_legis56_cleaned                  (VIEW)
 
@@ -354,6 +368,7 @@ tratado_tse_processed                      ----------
   doador_originario_2018_cleaned           (VIEW)
   doadores_pessoa_fisica_2018              (VIEW)
   perfil_eleitorado_cleaned                (VIEW)
+  politicos_com_mandato_2019_2021          (VIEW)
   receitas_candidatos_2014_cleaned         (VIEW)
   receitas_candidatos_2018_cleaned         (VIEW)
   receitas_completas_2014                  (VIEW)
