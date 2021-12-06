@@ -248,7 +248,9 @@ executivo_federal_outros                   ----------
 executivo_federal_servidores               ----------
   afastamentos_civis                       (EXTERNAL)
   cadastro_civis                           (EXTERNAL)
+  cadastro_civis_completo                  (VIEW)
   cadastro_militares                       (EXTERNAL)
+  cadastro_militares_completo              (VIEW)
   jetons_civis                             (EXTERNAL)
   jetons_militares                         (EXTERNAL)
   militares_inativos_RIC                   (EXTERNAL)
@@ -256,6 +258,9 @@ executivo_federal_servidores               ----------
   observacoes_militares                    (EXTERNAL)
   remuneracao_civis                        (EXTERNAL)
   remuneracao_militares                    (EXTERNAL)
+  v2_cadastro_bacen                        (EXTERNAL)
+  v2_cadastro_militares                    (EXTERNAL)
+  v2_cadastro_siape                        (EXTERNAL)
 
 gabi_bot                                   ----------
   camara_tramitacao_last30minutos          (TABLE)
