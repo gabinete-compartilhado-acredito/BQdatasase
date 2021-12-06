@@ -1,0 +1,202 @@
+{
+  "csvOptions": {
+    "allowJaggedRows": false,
+    "allowQuotedNewlines": false,
+    "encoding": "UTF-8",
+    "fieldDelimiter": ",",
+    "quote": "\"",
+    "skipLeadingRows": 1
+  },
+  "hivePartitioningOptions": {
+    "mode": "CUSTOM",
+    "sourceUriPrefix": "gs://brutos-publicos/executivo/federal/servidores/partitioned_v2/SIAPE/{data:DATE}"
+  },
+  "schema": {
+    "fields": [
+      {
+        "name": "mes",
+        "type": "STRING"
+      },
+      {
+        "name": "ano",
+        "type": "STRING"
+      },
+      {
+        "name": "id_servidor",
+        "type": "STRING"
+      },
+      {
+        "name": "nome",
+        "type": "STRING"
+      },
+      {
+        "name": "cpf",
+        "type": "STRING"
+      },
+      {
+        "name": "matricula",
+        "type": "STRING"
+      },
+      {
+        "name": "desc_cargo",
+        "type": "STRING"
+      },
+      {
+        "name": "classe_cargo",
+        "type": "STRING"
+      },
+      {
+        "name": "ref_cargo",
+        "type": "STRING"
+      },
+      {
+        "name": "padrao_cargo",
+        "type": "STRING"
+      },
+      {
+        "name": "nivel_cargo",
+        "type": "STRING"
+      },
+      {
+        "name": "sigla_funcao",
+        "type": "STRING"
+      },
+      {
+        "name": "nivel_funcao",
+        "type": "STRING"
+      },
+      {
+        "name": "funcao",
+        "type": "STRING"
+      },
+      {
+        "name": "cod_atividade",
+        "type": "STRING"
+      },
+      {
+        "name": "atividade",
+        "type": "STRING"
+      },
+      {
+        "name": "opcao_parcial",
+        "type": "STRING"
+      },
+      {
+        "name": "cod_uorg_lotacao",
+        "type": "STRING"
+      },
+      {
+        "name": "uorg_lotacao",
+        "type": "STRING"
+      },
+      {
+        "name": "cod_org_lotacao",
+        "type": "STRING"
+      },
+      {
+        "name": "org_lotacao",
+        "type": "STRING"
+      },
+      {
+        "name": "cod_orgsup_lotacao",
+        "type": "STRING"
+      },
+      {
+        "name": "orgsup_lotacao",
+        "type": "STRING"
+      },
+      {
+        "name": "cod_uorg_exercicio",
+        "type": "STRING"
+      },
+      {
+        "name": "uorg_exercicio",
+        "type": "STRING"
+      },
+      {
+        "name": "cod_org_exercicio",
+        "type": "STRING"
+      },
+      {
+        "name": "org_exercicio",
+        "type": "STRING"
+      },
+      {
+        "name": "cod_orgsup_exercicio",
+        "type": "STRING"
+      },
+      {
+        "name": "orgsup_exercicio",
+        "type": "STRING"
+      },
+      {
+        "name": "cod_tipo_vinculo",
+        "type": "STRING"
+      },
+      {
+        "name": "tipo_vinculo",
+        "type": "STRING"
+      },
+      {
+        "name": "situacao_vinculo",
+        "type": "STRING"
+      },
+      {
+        "name": "inicio_afastamento",
+        "type": "STRING"
+      },
+      {
+        "name": "termino_afastamento",
+        "type": "STRING"
+      },
+      {
+        "name": "regime_juridico",
+        "type": "STRING"
+      },
+      {
+        "name": "jornada_de_trabalho",
+        "type": "STRING"
+      },
+      {
+        "name": "ingresso_cargo_funcao",
+        "type": "STRING"
+      },
+      {
+        "name": "nomeacao_cargo_funcao",
+        "type": "STRING"
+      },
+      {
+        "name": "ingresso_orgao",
+        "type": "STRING"
+      },
+      {
+        "name": "doc_ingresso_servico_publico",
+        "type": "STRING"
+      },
+      {
+        "name": "data_dipl_ingresso_servico_publico",
+        "type": "STRING"
+      },
+      {
+        "name": "dipl_ingresso_cargo_funcao",
+        "type": "STRING"
+      },
+      {
+        "name": "dipl_ingresso_orgao",
+        "type": "STRING"
+      },
+      {
+        "name": "dipl_ingresso_servico_publico",
+        "type": "STRING"
+      },
+      {
+        "name": "uf_exercicio",
+        "type": "STRING"
+      }
+    ]
+  },
+  "sourceFormat": "CSV",
+  "sourceUris": [
+    "gs://brutos-publicos/executivo/federal/servidores/partitioned_v2/SIAPE/*_Cadastro_cleaned.csv"
+  ]
+}

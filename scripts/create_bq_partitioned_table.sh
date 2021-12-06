@@ -69,3 +69,19 @@ bq --project_id=gabinete-compartilhado mk --external_table_definition=table_defi
 
 # Cria tabela de comissionados da câmara:
 bq --project_id=gabinete-compartilhado mk --external_table_definition=table_definition_files/camara_deputados_comissionados.json camara_v1.deputados_comissionados
+
+# Hard-coded to build the EXTERNAL TABLE  'v2_cadastro_siape' in dataset 'executivo_federal_servidores'
+schema=`head -n1 ~/gabinete/projetos/fiscalizacao/dados/servidores-executivo-federal/limpos/v2/202106_Servidores_SIAPE/202106_Cadastro_cleaned.csv | sed -e 's/,/:STRING,/g' -e '1s/^\xEF\xBB\xBF//' | awk '{print $1":STRING"}'`
+bq --project_id=gabinete-compartilhado mkdef --noautodetect --source_format=CSV --hive_partitioning_mode=CUSTOM --hive_partitioning_source_uri_prefix=gs://brutos-publicos/executivo/federal/servidores/partitioned_v2/SIAPE/{data:DATE} gs://brutos-publicos/executivo/federal/servidores/partitioned_v2/SIAPE/*_Cadastro_cleaned.csv ${schema} | sed 's/"skipLeadingRows": 0/"skipLeadingRows": 1/g' > table_definition_files/servidores_federais_v2_siape_cadastro.json
+bq --project_id=gabinete-compartilhado mk --external_table_definition=table_definition_files/servidores_federais_v2_siape_cadastro.json executivo_federal_servidores.v2_cadastro_siape
+
+# Hard-coded to build the EXTERNAL TABLE  'v2_cadastro_bacen' in dataset 'executivo_federal_servidores'
+schema=`head -n1 ~/gabinete/projetos/fiscalizacao/dados/servidores-executivo-federal/limpos/v2/202106_Servidores_BACEN/202106_Cadastro_cleaned.csv | sed -e 's/,/:STRING,/g' -e '1s/^\xEF\xBB\xBF//' | awk '{print $1":STRING"}'`
+bq --project_id=gabinete-compartilhado mkdef --noautodetect --source_format=CSV --hive_partitioning_mode=CUSTOM --hive_partitioning_source_uri_prefix=gs://brutos-publicos/executivo/federal/servidores/partitioned_v2/BACEN/{data:DATE} gs://brutos-publicos/executivo/federal/servidores/partitioned_v2/BACEN/*_Cadastro_cleaned.csv ${schema} | sed 's/"skipLeadingRows": 0/"skipLeadingRows": 1/g' > table_definition_files/servidores_federais_v2_bacen_cadastro.json
+bq --project_id=gabinete-compartilhado mk --external_table_definition=table_definition_files/servidores_federais_v2_bacen_cadastro.json executivo_federal_servidores.v2_cadastro_bacen
+
+# Hard-coded to build the EXTERNAL TABLE  'v2_cadastro_militares' in dataset 'executivo_federal_servidores'
+schema=`head -n1 ~/gabinete/projetos/fiscalizacao/dados/servidores-executivo-federal/limpos/v2/202106_Militares/202106_Cadastro_cleaned.csv | sed -e 's/,/:STRING,/g' -e '1s/^\xEF\xBB\xBF//' | awk '{print $1":STRING"}'`
+bq --project_id=gabinete-compartilhado mkdef --noautodetect --source_format=CSV --hive_partitioning_mode=CUSTOM --hive_partitioning_source_uri_prefix=gs://brutos-publicos/executivo/federal/servidores/partitioned_v2/Militares/{data:DATE} gs://brutos-publicos/executivo/federal/servidores/partitioned_v2/Militares/*_Cadastro_cleaned.csv ${schema} | sed 's/"skipLeadingRows": 0/"skipLeadingRows": 1/g' > table_definition_files/servidores_federais_v2_militares_cadastro.json
+bq --project_id=gabinete-compartilhado mk --external_table_definition=table_definition_files/servidores_federais_v2_militares_cadastro.json executivo_federal_servidores.v2_cadastro_militares
+
