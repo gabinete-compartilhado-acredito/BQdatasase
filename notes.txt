@@ -8,6 +8,13 @@ maior, provavelmente). Talvez possa haver algo registrado em commits anteriores 
 
 Para religar o sistema de monitoramento da Câmara:
 * Religar a scheduled query `gabibot-camara-tramitacao-30min`
+* Religar as capturas na AWS (mudar capture_type no dynamoDB de off_live p/ live e deletar as daily):
+camara-proposicoes-tramitadas-periodo, camara-proposicoes-live, camara-tramitacoes,
+
+Para religar o sistema de monitoramento do Senado:
+* Além das scheduled queries paradas e de configs do dynamoDB que já estavam em off_live,
+  no dia 31/05/2022 passei a de live p/ off_live.
+  
 
 ## Como debugar o BigQuery
 
