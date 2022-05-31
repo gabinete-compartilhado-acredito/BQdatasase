@@ -32,6 +32,17 @@ WITH exonomeia AS (
     ARRAY_CONCAT(REGEXP_EXTRACT_ALL(clean_text, r"[Ee](?:xonerar|XONERAR).{0,100}?([A-ZÇÃÁÂÉÊÍÓÔÚ'\- ]{10,})"),
                  REGEXP_EXTRACT_ALL(clean_text, r"[Ee](?:xonerad[ao]|XONERAD[AO])[^\.]{0,50}?([A-ZÇÃÁÂÉÊÍÓÔÚ'\- ]{10,})")) AS exoneracao_nome, -- Extrai o nome do exonerado.
 
+/*
+  -- Detecta designações pelo termo "Designar" acompanhado de letras maiúsculas (que esperamos ser nomes):
+    REGEXP_EXTRACT_ALL(clean_text, r"([Dd](?:esignar|ESIGNAR).{0,100}?[A-ZÇÃÁÂÉÊÍÓÔÚ'\- ]{10,})") AS designacao_texto, -- Extrai o texto da designação.
+    REGEXP_EXTRACT_ALL(clean_text, r"[Dd](?:esignar|ESIGNAR).{0,100}?([A-ZÇÃÁÂÉÊÍÓÔÚ'\- ]{10,})") AS designacao_nome,  -- Extrai apenas o nome do designado.
+        
+    -- Detecta exonerações pelo termo "Dispensar" (1 regex) ou "Dispensado(a)" (2o regex) acompanhado de letras maiúsculas (que esperamos ser nomes):
+    ARRAY_CONCAT(REGEXP_EXTRACT_ALL(clean_text, r"([Dd](?:ispensar|ISPENSAR).{0,100}?[A-ZÇÃÁÂÉÊÍÓÔÚ'\- ]{10,})"),
+                 REGEXP_EXTRACT_ALL(clean_text, r"([Dd](?:ispensad[ao]|INSPENSAD[AO])[^\.]{0,50}?[A-ZÇÃÁÂÉÊÍÓÔÚ'\- ]{10,})")) AS dispensa_texto, -- Extrai o texto da dispensa.
+    ARRAY_CONCAT(REGEXP_EXTRACT_ALL(clean_text, r"[Dd](?:ispensar|ISPENSAR).{0,100}?([A-ZÇÃÁÂÉÊÍÓÔÚ'\- ]{10,})"),
+                 REGEXP_EXTRACT_ALL(clean_text, r"[Dd](?:ispensad[ao]|INSPENSAD[AO])[^\.]{0,50}?([A-ZÇÃÁÂÉÊÍÓÔÚ'\- ]{10,})")) AS dispensa_nome, -- Extrai o nome do dispensado.
+*/
     clean_text, assina, identifica, url,
     -- Colunas de partição:
     part_data_pub, part_secao
@@ -41,6 +52,7 @@ WITH exonomeia AS (
   WHERE secao = 2 AND
   -- Palavras-chave que indicam exonerações/nomeações:
   REGEXP_CONTAINS(LOWER(clean_text), CONCAT(r'(?:', 'nomear', '|', 'exonerar|exonerad[ao]', ')'))
+  --REGEXP_CONTAINS(LOWER(clean_text), CONCAT(r'(?:', 'nomear', '|', 'exonerar|exonerad[ao]', '|', 'designar', '|', 'dispensar|dispensad[ao]', ')'))
 )
 
 
