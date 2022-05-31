@@ -17,10 +17,11 @@ SELECT
   o.sigla_partido AS orientador, o.orientacao_padronizada,
   -- Cálculo do alinhamento:
   CASE
-    WHEN o.orientacao_padronizada IS NULL OR v.voto_orientado IS NULL THEN NULL -- Sem informações suficientes.
-    WHEN o.orientacao_padronizada = 'Liberado' THEN NULL                        -- Partido não orientou.
-    WHEN v.voto_orientado = 'Artigo 17' THEN NULL                               -- Presidente não vota (e talvez membros da mesa também não).
-    WHEN v.voto_orientado = 'Ausente' THEN NULL                                 -- Ignoramos o caso de parlamentar ausente (voto_orientado já é obstrução quando o partido pede obstrução).
+    WHEN TRIM(o.orientacao_padronizada) = '' OR TRIM(v.voto_orientado) = '' THEN NULL -- Sem informações suficientes.
+    WHEN o.orientacao_padronizada IS NULL OR v.voto_orientado IS NULL THEN NULL       -- Sem informações suficientes.
+    WHEN o.orientacao_padronizada = 'Liberado' THEN NULL                              -- Partido não orientou.
+    WHEN v.voto_orientado = 'Artigo 17' THEN NULL                                     -- Presidente não vota (e talvez membros da mesa também não).
+    WHEN v.voto_orientado = 'Ausente' THEN NULL                                       -- Ignoramos o caso de parlamentar ausente (voto_orientado já é obstrução quando o partido pede obstrução).
     WHEN v.voto_orientado = o.orientacao_padronizada THEN 1
     ELSE 0
   END AS alinhamento,
