@@ -1,7 +1,19 @@
-# To check an error message coming from a query ran on BigQuery (BG), use the command:
-bq --format=prettyjson show -j {job_id}
+# Notas sobre o BigQuery e nossas bases
 
-# (check the Job ID in the Job Information tab in the Query results in the BG UI).
+## Ligando o sistema de monitoramento do congresso via bot do Slack
 
-# Informações sobre como debugar dados do Storage no BigQuery:
-# https://snowplowanalytics.com/blog/2018/12/19/debugging-bad-data-in-gcp-with-bigquery/
+No dia 31/05/2022, o sistema de monitoramento do Senado já estava desligado. Para ligá-lo, talvez
+as informações sobre o que é preciso fazer estejam em cadernos de papel (o primeiro do Gabinete,
+maior, provavelmente). Talvez possa haver algo registrado em commits anteriores também.
+
+Para religar o sistema de monitoramento da Câmara:
+* Religar a scheduled query `gabibot-camara-tramitacao-30min`
+
+## Como debugar o BigQuery
+
+* To check an error message coming from a query ran on BigQuery (BG), use the command:
+`bq --format=prettyjson show -j {job_id}`
+(check the Job ID in the Job Information tab in the Query results in the BG UI).
+
+* Informações sobre como debugar dados do Storage no BigQuery:
+<https://snowplowanalytics.com/blog/2018/12/19/debugging-bad-data-in-gcp-with-bigquery/>
