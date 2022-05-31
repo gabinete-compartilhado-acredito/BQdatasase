@@ -14,7 +14,7 @@ codTipoLideranca AS tipo_lideranca,
 siglaPartidoBloco AS sigla_partido_bloco, 
 
 -- Orientação:
-orientacaoVoto AS orientacao, 
+IF(TRIM(orientacaoVoto) = '', NULL, TRIM(orientacaoVoto)) AS orientacao, 
 
 -- URIs:
 uriPartidoBloco AS uri_partido, 
