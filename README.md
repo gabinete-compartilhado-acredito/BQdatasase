@@ -11,9 +11,11 @@ here, as a data organization schema and as a historical backup.
     .
     ├── LICENSE             <- This project's license
     ├── README.md           <- This document, with information about the project
+    ├── ddl_queries         <- BigQuery queries used to create tables.
     ├── list_of_tables.txt  <- A list of all tables in BigQuery, under each dataset, along with their type
     ├── flowcharts          <- A folder with flowcharts of table dependencies (for views and scheduled queries)
     ├── scheduled_queries   <- A folder with backup of active scheduled queries
+    ├── scripts             <- Maintenance scripts (e.g. for creating new tables)
     ├── views               <- A folder with backup of views
     └── notes.txt           <- A few notes on debugging and working with BigQuery
 
@@ -39,6 +41,7 @@ The queries stored here were written by:
 
 * Henrique S. Xavier - [@hsxavier](https://github.com/hsxavier)
 * João Carabetta     - [@JoaoCarabetta](https://github.com/JoaoCarabetta)
+* Cristiano Froes    - [@CristianoFroes](https://github.com/CristianoFroes)
 
 ### License
 
