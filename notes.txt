@@ -14,7 +14,6 @@ camara-proposicoes-tramitadas-periodo, camara-proposicoes-live, camara-tramitaco
 Para religar o sistema de monitoramento do Senado:
 * Além das scheduled queries paradas e de configs do dynamoDB que já estavam em off_live,
   no dia 31/05/2022 passei a de live p/ off_live.
-  
 
 ## Como debugar o BigQuery
 
